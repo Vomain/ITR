@@ -1,8 +1,7 @@
 #include "Thread.h"
 
-void Thread::Thread(int schedPolicyArg){
-	schedPolicy = schedPolicyArg;
-}
+Thread::Thread(int schedPolicy) : schedPolicy(schedPolicy)
+{}
 	
 void Thread::start(int priority)
 {
@@ -25,3 +24,6 @@ static void* Thread::call_run(void *arg_pointer)
 {
 	run();
 }
+
+void Thread::run()
+{}

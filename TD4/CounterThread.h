@@ -5,13 +5,12 @@
 
 
 
-class CounterThread public Thread
+class CounterThread: public Thread
 {
 public:
-	void CounterThread::CounterThread(int schedPolicy, int nLoops, double *pCounter)
-protected:
-	static void run();
+	CounterThread::CounterThread(int schedPolicy, int nLoops, double *pCounter)
 private:
+	static void run();
 	int nLoops;
 	double *pCounter;
 };

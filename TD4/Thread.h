@@ -6,12 +6,12 @@
 class Thread
 {
 public:
-	void Thread(int schedPolicy);
+	Thread(int schedPolicy);
 	void start(int priority);
 	void join();
 	static void * call_run(void *);
 protected:
-	static virtual void run();
+	static void run();
 private:
 	pthread_t tid;
 	int schedPolicy;
