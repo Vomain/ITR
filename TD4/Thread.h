@@ -9,6 +9,7 @@ public:
 	void Thread(int schedPolicy);
 	void start(int priority);
 	void join();
+	static void * call_run(void *);
 protected:
 	virtual void run();
 private:

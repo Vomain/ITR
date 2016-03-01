@@ -19,10 +19,10 @@ void Thread::start(int priority)
 }
 
 void Thread::join(){
-	
+	pthread_join(tid, NULL);
 }
 
-void* call_run(void *arg_pointer)
+static void* Thread::call_run(void *arg_pointer)
 {
 	run();
 }
