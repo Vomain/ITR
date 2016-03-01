@@ -1,5 +1,4 @@
 #include "Thread.h"
-#include <pthread.h>
 
 void Thread::Thread(int schedPolicyArg){
 	schedPolicy = schedPolicyArg;
