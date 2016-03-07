@@ -2,12 +2,12 @@
 #include <stdio.h>
 
 Thread::Thread(int schedPolicy) : schedPolicy(schedPolicy)
-{}
+{
+    pthread_attr_init(&attr);
+}
 	
 void Thread::start(int priority)
 {
-	pthread_attr_t attr;
-	pthread_attr_init(&attr);
 	pthread_attr_setschedpolicy(&attr, schedPolicy);
 	sched_param schedParams;
 	schedParams.sched_priority = priority;
@@ -19,6 +19,17 @@ void Thread::start(int priority)
 
 void Thread::join(){
 	pthread_join(tid, NULL);
+}
+
+int Thread::join(double timeout_ms)
+{
+    struct timespec ts;
+    time_t sec=(int)(timeout_ms/1000);
+    timeout_ms -= sec*1000;
+    ts.tv_sec=sec;
+    ts.tv_nsec=timeout_ms*1000000L;
+
+    return pthread_timedjoin_np(tid, NULL, &ts);
 }
 
 void* Thread::call_run(void *arg_pointer)
@@ -41,18 +52,8 @@ void Thread::sleep(double delay_ms)
 	nanosleep(&ts, NULL);
 }
 
-int Thread::join(double timeout_ms)
+void Thread::setStackSize(size_t stackSize)
 {
-	struct timespec ts;
-	time_t sec=(int)(timeout_ms/1000);
-    timeout_ms -= sec*1000;
-    ts.tv_sec=sec;
-    ts.tv_nsec=timeout_ms*1000000L;
-    
-	return pthread_timedjoin_np(tid, NULL, &ts);
+    pthread_attr_setstacksize(&attr, stackSize);
 }
 
-void Thread::cancel()
-{
-	pthread_cancel(tid);
-}
