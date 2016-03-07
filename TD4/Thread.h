@@ -11,6 +11,8 @@ public:
 	void join();
 	static void * call_run(void *);
 	static void sleep(double);
+	int join(double timeout_ms);
+	void cancel();
 protected:
 	virtual void run();
 private:

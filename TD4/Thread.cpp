@@ -1,7 +1,5 @@
 #include "Thread.h"
 #include <stdio.h>
-#include <time.h>
-#include <errno.h>
 
 Thread::Thread(int schedPolicy) : schedPolicy(schedPolicy)
 {}
@@ -41,4 +39,20 @@ void Thread::sleep(double delay_ms)
     ts.tv_nsec=delay_ms*1000000L;
 	
 	nanosleep(&ts, NULL);
+}
+
+int Thread::join(double timeout_ms)
+{
+	struct timespec ts;
+	time_t sec=(int)(timeout_ms/1000);
+    timeout_ms -= sec*1000;
+    ts.tv_sec=sec;
+    ts.tv_nsec=timeout_ms*1000000L;
+    
+	return pthread_timedjoin_np(tid, NULL, &ts);
+}
+
+void Thread::cancel()
+{
+	pthread_cancel(tid);
 }
