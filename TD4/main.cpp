@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
 	counterThread.join();
 	printf("countThread done!\n");
 	
-	printf("%0.f", counter);
+	printf("compteur : %0.f\n", counter);
 	
 	return 0;
 }

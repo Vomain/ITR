@@ -1,4 +1,5 @@
 #include "Thread.h"
+#include <stdio.h>
 
 Thread::Thread(int schedPolicy) : schedPolicy(schedPolicy)
 {}
@@ -13,16 +14,16 @@ void Thread::start(int priority)
 	pthread_attr_setschedparam(&attr, &schedParams);	
 	pthread_attr_setinheritsched(&attr, PTHREAD_EXPLICIT_SCHED);
 	
-	pthread_create(&tid, &attr, call_run, NULL);
+	pthread_create(&tid, &attr, call_run, this);
 }
 
 void Thread::join(){
 	pthread_join(tid, NULL);
 }
 
-static void* Thread::call_run(void *arg_pointer)
+void* Thread::call_run(void *arg_pointer)
 {
-	run();
+	((Thread *) arg_pointer)->run();
 }
 
 void Thread::run()

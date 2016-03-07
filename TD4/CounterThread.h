@@ -8,9 +8,10 @@
 class CounterThread: public Thread
 {
 public:
-	CounterThread::CounterThread(int schedPolicy, int nLoops, double *pCounter)
+	CounterThread(int schedPolicy, int nLoops, double *pCounter);
+protected:
+	void run();
 private:
-	static void run();
 	int nLoops;
 	double *pCounter;
 };

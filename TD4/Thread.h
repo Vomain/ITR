@@ -11,7 +11,7 @@ public:
 	void join();
 	static void * call_run(void *);
 protected:
-	static void run();
+	virtual void run();
 private:
 	pthread_t tid;
 	int schedPolicy;
