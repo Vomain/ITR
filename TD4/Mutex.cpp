@@ -2,7 +2,9 @@
 #include <stdio.h>
 
 Mutex::Mutex(bool isInversionSafe)
-{}
+{
+	pthread_mutex_init(&mid);
+}
 
 void Mutex::lock()
 {
