@@ -10,6 +10,7 @@ public:
 	void start(int priority);
 	void join();
 	static void * call_run(void *);
+	static void sleep(double);
 protected:
 	virtual void run();
 private:
