@@ -1,19 +1,17 @@
-#ifndef COUNTER_THREAD_H
-#define COUNTER_THREAD_H
+#ifndef PROTECTED_COUNTER_THREAD_H
+#define PROTECTED_COUNTER_THREAD_H
 
-#include "Thread.h"
+#include "CounterThread.h"
+#include "Mutex.h"
 
-
-
-class CounterThread: public Thread
+class ProtectedCounterThread: public CounterThread
 {
 public:
-	CounterThread(int schedPolicy, int nLoops, double *pCounter);
+	ProtectedCounterThread(int schedPolicy, int nLoops, double *pCounter, Mutex *mutex);
 protected:
 	void run();
 private:
-	int nLoops;
-	double *pCounter;
+	Mutex *mutex;
 };
 
 #endif

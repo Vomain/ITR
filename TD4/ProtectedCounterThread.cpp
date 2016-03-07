@@ -1,13 +1,23 @@
-#include "CounterThread.h"
+#include "ProtectedCounterThread.h"
 #include <stdio.h>
+#include "Lock.h"
 
-CounterThread::CounterThread(int schedPolicy, int nLoops, double *pCounter)
-: Thread(schedPolicy), nLoops(nLoops), pCounter(pCounter)
+ProtectedCounterThread::ProtectedCounterThread(int schedPolicy, int nLoops, double *pCounter, Mutex *mutex)
+: CounterThread(schedPolicy, nLoops, pCounter)
 {}
 	
-void CounterThread::run(){
+void ProtectedCounterThread::run(){
 	for (int i = 0; i < nLoops ; i++) 
 	{
-		*pCounter += 1.0;
+		//try{
+			{
+				Lock lock(mutex);
+				*pCounter += 1.0;
+			}
+		//} 
+		/*catch (std::exception& e) 
+		{
+			printf("wowowow");
+		}*/
 	}
 }

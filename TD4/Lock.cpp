@@ -2,7 +2,9 @@
 #include <stdio.h>
 
 Lock::Lock(Mutex *m)
-{}
+{
+	m->lock();
+}
 
 Lock::Lock(Mutex *m, double timeout_ms)
 {
@@ -12,4 +14,4 @@ Lock::Lock(Mutex *m, double timeout_ms)
 class TimeoutException 
 {
 	
-}
+};

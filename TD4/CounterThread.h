@@ -11,7 +11,6 @@ public:
 	CounterThread(int schedPolicy, int nLoops, double *pCounter);
 protected:
 	void run();
-private:
 	int nLoops;
 	double *pCounter;
 };
