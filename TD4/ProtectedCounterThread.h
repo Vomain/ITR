@@ -4,14 +4,15 @@
 #include "CounterThread.h"
 #include "Mutex.h"
 
-class ProtectedCounterThread: public CounterThread
-{
+class ProtectedCounterThread : public CounterThread {
 public:
-	ProtectedCounterThread(int schedPolicy, int nLoops, double *pCounter, Mutex *mutex);
+    ProtectedCounterThread(int schedPolicy, int nLoops, double *pCounter, Mutex *mutex);
+
 protected:
-	void run();
+    void run();
+
 private:
-	Mutex *mutex;
+    Mutex *mutex;
 };
 
 #endif

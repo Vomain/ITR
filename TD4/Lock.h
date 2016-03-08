@@ -5,27 +5,28 @@
 #include "Mutex.h"
 #include <exception>
 
-class Lock
-{
-	
+class Lock {
+
 public:
-	class TimeoutException : public std::exception
-	{
-	public:
-		virtual const char* what() const throw() 
-			{
-				return "Timed out exception!\n";
-			}
-	private:
-		int errorCode;
-	};
-	
+    class TimeoutException : public std::exception {
+    public:
+        virtual const char *what() const throw() {
+            return "Timed out exception!\n";
+        }
+
+    private:
+        int errorCode;
+    };
+
 public:
-	Lock(Mutex*);
-	Lock(Mutex*, double);
-	~Lock();
+    Lock(Mutex *);
+
+    Lock(Mutex *, double);
+
+    ~Lock();
+
 private:
-	Mutex *mutex;
+    Mutex *mutex;
 };
 
 #endif
