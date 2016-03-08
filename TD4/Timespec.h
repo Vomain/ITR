@@ -4,11 +4,12 @@
 #include <time.h>
 #include <math.h>
 
-class Timespec : public timespec
-{
+class Timespec : public timespec { // Hérite de timespec
 public:
     Timespec();
+
     Timespec from_ms(double);
+
     double to_ms();
 };
 

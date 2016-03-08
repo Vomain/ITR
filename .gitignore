@@ -30,3 +30,9 @@
 # Word Documents
 *.docx
 *.pdf
+
+# Zip
+*.zip
+
+# CLion
+CMakeLists.txt

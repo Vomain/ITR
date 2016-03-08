@@ -2,17 +2,23 @@
 #define MUTEX_H_INCLUDED
 
 #include <pthread.h>
+#include <stdio.h>
+#include "Timespec.h"
 
-class Mutex
-{
+class Mutex {
 public:
-	Mutex(bool isInversionSafe);
-	void lock();
-	bool lock(double);
-	bool trylock();
-	void unlock();
+    Mutex(bool isInversionSafe);
+
+    void lock();
+
+    bool lock(double);
+
+    bool trylock();
+
+    void unlock();
+
 private:
-	pthread_mutex_t mid;
+    pthread_mutex_t mid;
 };
 
 #endif
