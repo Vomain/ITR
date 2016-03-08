@@ -3,7 +3,7 @@
 #include "Lock.h"
 
 ProtectedCounterThread::ProtectedCounterThread(int schedPolicy, int nLoops, double *pCounter, Mutex *mutex)
-: CounterThread(schedPolicy, nLoops, pCounter)
+: CounterThread(schedPolicy, nLoops, pCounter), mutex(mutex)
 {}
 	
 void ProtectedCounterThread::run(){

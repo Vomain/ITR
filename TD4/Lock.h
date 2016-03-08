@@ -9,7 +9,10 @@ class Lock
 public:
 	Lock(Mutex*);
 	Lock(Mutex*, double);
+	~Lock();
 	class TimeoutException;
+private:
+	Mutex *mutex;
 };
 
 #endif
