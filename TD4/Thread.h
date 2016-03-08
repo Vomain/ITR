@@ -2,6 +2,7 @@
 #define THREAD_H
 
 #include <pthread.h>
+#include "Timespec.h"
 
 class Thread {
 public:
