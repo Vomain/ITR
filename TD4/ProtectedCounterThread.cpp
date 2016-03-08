@@ -9,15 +9,18 @@ ProtectedCounterThread::ProtectedCounterThread(int schedPolicy, int nLoops, doub
 void ProtectedCounterThread::run(){
 	for (int i = 0; i < nLoops ; i++) 
 	{
-		//try{
+		try{
 			{
-				Lock lock(mutex);
+				printf("coucou  %d\n", i);
+				Lock lock(mutex, 1000);
 				*pCounter += 1.0;
 			}
-		//} 
-		/*catch (std::exception& e) 
+		} 
+		catch (Lock::TimeoutException const& e) 
 		{
-			printf("wowowow");
-		}*/
+			printf("Compteur : %f\n", *pCounter);
+			printf(e.what());
+
+		}
 	}
 }

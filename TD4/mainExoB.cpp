@@ -8,8 +8,8 @@ int main(int argc, char* argv[])
 	double counter = 0.0;
 
 	Mutex mutex(true);
-	ProtectedCounterThread counterThreadA(schedPolicy, 150000, &counter, &mutex);
-	ProtectedCounterThread counterThreadB(schedPolicy, 150000, &counter, &mutex);
+	ProtectedCounterThread counterThreadA(schedPolicy, 60000, &counter, &mutex);
+	ProtectedCounterThread counterThreadB(schedPolicy, 30000, &counter, &mutex);
 	
 	printf("countThreads created!\n");
 

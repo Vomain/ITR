@@ -9,15 +9,12 @@ Lock::Lock(Mutex *m)
 
 Lock::Lock(Mutex *m, double timeout_ms)
 {
-	
+	if(!m->lock(timeout_ms)){
+		throw TimeoutException();
+	}
 }
 
 Lock::~Lock() 
 {
 	mutex->unlock();
 }
-
-class TimeoutException 
-{
-	
-};
