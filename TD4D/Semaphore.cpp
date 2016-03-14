@@ -38,3 +38,5 @@ Semaphore::~Semaphore() {
     // destroy
 }
 
+//clock_gettime(CLOCK_THREAD_CPUTIME_IDn &my_timespec);
+//clock_gettime(CLOCK_REALTIME, &my_timespec);
