@@ -17,6 +17,7 @@ int main(int argc, char *argv[]) {
     printf("countThreads started!\n");
 
     counterThreadA.join();
+    counterThreadA.join();
 
     printf("countThreads done!\n");
 

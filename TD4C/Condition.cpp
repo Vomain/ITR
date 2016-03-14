@@ -8,15 +8,17 @@ Condition::Condition() : Mutex(true)
 Condition::Condition(bool isInversionSafe)
 : Mutex(isInversionSafe)
 {
-	pthread_condattr_t attr;
-	pthread_condattr_init(&attr);
-	pthread_cond_init(&cid, &attr);
+	pthread_cond_init(&cid, NULL);
 	// ???
 }
+
+//prévoir un destructeur
 	
 void Condition::wait()
 {
-	pthread_cond_wait(&cid, &mid);
+	printf("Waiting\n");
+	int error = pthread_cond_wait(&cid, &mid);
+	printf("ERREUR : %d\n", error);
 }
 
 bool Condition::wait(double timeout_ms)
@@ -33,6 +35,7 @@ bool Condition::wait(double timeout_ms)
 
 void Condition::notify()
 {
+	printf("Notify\n");
 	pthread_cond_signal(&cid);
 }
 
