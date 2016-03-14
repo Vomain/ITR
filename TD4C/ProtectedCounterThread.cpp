@@ -5,7 +5,6 @@ ProtectedCounterThread::ProtectedCounterThread(int schedPolicy, int nLoops, doub
         : CounterThread(schedPolicy, nLoops, pCounter), mutex(mutex) { }
 
 void ProtectedCounterThread::run() {
-	printf("ici le run\n");
     for (int i = 0; i < nLoops; i++) {
         try {
             {
@@ -17,5 +16,4 @@ void ProtectedCounterThread::run() {
             printf(e.what());
         }
     }
-    printf("Run terminé\n");
 }

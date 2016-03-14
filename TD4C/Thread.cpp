@@ -9,18 +9,12 @@ Thread::Thread(int schedPolicy) : schedPolicy(schedPolicy) {
 }
 
 bool Thread::start(int priority) {
-	printf("Start !\n");
-	
 	{
 		Lock lock(&condition);
 		while(started)
 		{
-			printf(started ? "true" : "false");
-			printf("Je vérifie si je suis pas déjà lancé\n");
 			condition.wait();
-			printf("Débloqué\n");
 		}
-		printf("Je suis pas lancé, j'y vais, c'est parti!\n");
 		started = true;
 	}
 		
