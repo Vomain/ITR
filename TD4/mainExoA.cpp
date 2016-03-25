@@ -7,11 +7,11 @@ int main(int argc, char* argv[])
 	double counter = 0.0;
     size_t stackSize = 100000000;  // Doit être supérieur à PTHREAD_STACK_MIN (16384) bytes
 
-	CounterThread counterThread(schedPolicy, 15000, &counter);
+	CounterThread counterThread(schedPolicy, 15000000000, &counter);
 	printf("countThread created!\n");
 
-    counterThread.setStackSize(stackSize);
-    printf("countThread sized!\n");
+//    counterThread.setStackSize(stackSize);
+//    printf("countThread sized!\n");
 
     counterThread.start(8);
     printf("countThread started!\n");
