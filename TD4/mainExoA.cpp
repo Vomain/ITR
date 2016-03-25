@@ -16,9 +16,9 @@ int main(int argc, char* argv[])
     counterThread.start(8);
     printf("countThread started!\n");
 
-//    printf("countThread fell asleep!\n");
-//    counterThread.sleep(0);
-//    printf("countThread woke up!\n");
+    printf("countThread fell asleep!\n");
+    counterThread.sleep(1000);
+    printf("countThread woke up!\n");
     
 //	if(counterThread.join(100000000)==110)
 //	{
