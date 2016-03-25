@@ -33,7 +33,9 @@ void *Thread::call_run(void *arg_pointer) {
     ((Thread *) arg_pointer)->run();
 }
 
-void Thread::run() { }
+void Thread::run() { 
+    printf("RUN sans rien\n");
+}
 
 void Thread::sleep(double delay_ms) {
 
