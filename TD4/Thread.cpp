@@ -11,8 +11,9 @@ void Thread::start(int priority) {
     schedParams.sched_priority = priority;
     pthread_attr_setschedparam(&attr, &schedParams);
     pthread_attr_setinheritsched(&attr, PTHREAD_EXPLICIT_SCHED);
-
+    printf("launching pthread create\n");
     pthread_create(&tid, &attr, call_run, this);
+    printf("pthread created \n");
 }
 
 void Thread::join() {
@@ -28,7 +29,7 @@ int Thread::join(double timeout_ms) {
 }
 
 void *Thread::call_run(void *arg_pointer) {
-    printf("CALL RUN LAUNCHED");
+    printf("CALL RUN LAUNCHED\n");
     ((Thread *) arg_pointer)->run();
 }
 
@@ -43,7 +44,7 @@ void Thread::sleep(double delay_ms) {
 }
 
 void Thread::setStackSize(size_t stackSize) {
-    printf("SET STACK SIZE LAUNCHED");
+    printf("SET STACK SIZE LAUNCHED\n");
     pthread_attr_setstacksize(&attr, stackSize);
 }
 
