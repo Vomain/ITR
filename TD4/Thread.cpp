@@ -10,7 +10,7 @@ void Thread::start(int priority) {
     sched_param schedParams;
     schedParams.sched_priority = priority;
     pthread_attr_setschedparam(&attr, &schedParams);
-    pthread_attr_setinheritsched(&attr, PTHREAD_EXPLICIT_SCHED);
+    //pthread_attr_setinheritsched(&attr, PTHREAD_EXPLICIT_SCHED);
     printf("launching pthread create\n");
     pthread_create(&tid, &attr, call_run, this);
     printf("pthread created \n");
