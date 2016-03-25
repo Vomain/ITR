@@ -1,6 +1,8 @@
 #include "Semaphore.h"
-#include "Lock.h
+#include "Lock.h"
 #include <stdio.h>
+
+unsigned UINT_MAX = 1000;
 
 Semaphore::Semaphore(unsigned counter=0, unsigned maxCount=UINT_MAX) : counter(counter), maxCount(maxCount)
 {}
@@ -73,11 +75,13 @@ bool Semaphore::take(double timeout_ms)
             tmaxWait = tmax - tmaxWait;
             
             double timeout = tmaxWait.to_ms();
-            condition.wait(timeout_ms);
-            //si on a dépassé le temps absolu, on return false ?
+            bool result = condition.wait(timeout);
+            if(!result){ // si c'est un timeout qui a libéré le thread
+                return false;
+            }
         }
-	} else {
-        counter--; 
-        return true;
-    }
+        
+	}
+    counter--;
+    return true;
 }
