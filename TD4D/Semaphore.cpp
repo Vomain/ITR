@@ -1,43 +1,83 @@
 #include "Semaphore.h"
+#include "Lock.h
 #include <stdio.h>
-#include "Timespec.h"
 
-Semaphore::Semaphore(unsigned counter, unsigned maxCount) : counter(0), maxCount(UINT_MAX)
+Semaphore::Semaphore(unsigned counter=0, unsigned maxCount=UINT_MAX) : counter(counter), maxCount(maxCount)
 {}
+
+
+/*
+    Rend un jeton au sémaphore, si on atteint pas le maximum.
+    Quand le compteur est incrémenté, un des threads en attente sont notifiés
+*/
 
 void Semaphore::give() 
 {
-	if(counter != maxCount)
+    Lock(&condition); //Protège la variable counter
+	if(counter < maxCount)
 	{
 		counter++;
+        condition.notify();
 	}
 }
+
+/*
+    Notifie tous les thread en attente de la condition
+*/
 
 void Semaphore::flush() 
 {
-	// if block, free
-	// notifyAll
+	condition.notifyAll();
 }
+
+/*
+    Prend un jeton au sémaphore
+    S'il n'y a plus de jeton, l'appel est bloquant et le thread est mis en pause par la condition. A l'arrivée d'un signal ou d'un broadcast, la condition est testée à nouveau. 
+*/
 
 void Semaphore::take() 
 {
-	
+	Lock(&condition);
 	if (counter == 0) 
 	{
-		//block	
-	}
-	counter--;
+		while(counter==0){
+            condition.wait();
+        }
+	} else {
+        counter--;
+    }
 }
+
+/*
+    Idem, avec un timeout sur le temps de lock
+    //TODO à revoir
+*/
 
 bool Semaphore::take(double timeout_ms) 
 {
-	
-}
+    Timespec tmax; // On instancie notre classe Timespec
+    clock_gettime(CLOCK_REALTIME, &tmax); 
 
-Semaphore::~Semaphore() {
-    // destroy
+    Timespec t_timeout;
+    t_timeout.from_ms(timeout_ms);
+    
+    //t1 devient le temps maximal à ne pas dépasser
+    tmax = tmax + t_timeout;
+    
+	Lock(&condition);
+	if (counter == 0) 
+	{
+		while(counter==0){
+            Timespec tmaxWait;
+            clock_gettime(CLOCK_REALTIME, &tmaxWait);
+            tmaxWait = tmax - tmaxWait;
+            
+            double timeout = tmaxWait.to_ms();
+            condition.wait(timeout_ms);
+            //si on a dépassé le temps absolu, on return false ?
+        }
+	} else {
+        counter--; 
+        return true;
+    }
 }
-
-//clock_gettime(CLOCK_THREAD_CPUTIME_IDn &my_timespec);
-//clock_gettime(CLOCK_REALTIME, &my_timespec);
-// putepute

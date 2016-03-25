@@ -12,6 +12,16 @@ Timespec operator+(Timespec ts1, Timespec ts2) {
     return ts1;
 }
 
+Timespec operator-(Timespec ts1, Timespec ts2) {
+    /**
+     * Surcharge de l'opérateur '-' afin de prendre en compte le passage de n_sec à sec
+     */
+    ts1.tv_sec -= ts2.tv_sec + (ts1.tv_nsec - ts2.tv_nsec) / 1000000000; // Renormalisation des secondes
+    ts1.tv_nsec -= ts2.tv_nsec;
+    ts1.tv_nsec %= 1000000000; // Renormalisation des nanosecondes
+    return ts1;
+}
+
 Timespec Timespec::from_ms(double t_ms) {
     /**
      * Pour un double t_ms (temps en ms) donné, renvoie le Timespec convertit
