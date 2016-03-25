@@ -28,6 +28,7 @@ int Thread::join(double timeout_ms) {
 }
 
 void *Thread::call_run(void *arg_pointer) {
+    printf("CALL RUN LAUNCHED");
     ((Thread *) arg_pointer)->run();
 }
 
@@ -42,6 +43,7 @@ void Thread::sleep(double delay_ms) {
 }
 
 void Thread::setStackSize(size_t stackSize) {
+    printf("SET STACK SIZE LAUNCHED");
     pthread_attr_setstacksize(&attr, stackSize);
 }
 
