@@ -6,8 +6,8 @@ ThreadA::ThreadA(Semaphore *semaphore): Thread(SCHED_RR), semaphore(semaphore)
 
 void ThreadA::run() {
     sleep(10);
-    *semaphore.take();
+    semaphore->take();
     sleep(10);
-    *semaphore.give();
+    semaphore->give();
     sleep(20);
 }

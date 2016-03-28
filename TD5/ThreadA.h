@@ -6,13 +6,13 @@
 
 class ThreadA : public Thread {
 public:
-    ThreadA(Condition *condition);
+    ThreadA(Semaphore *semaphore);
 
 protected:
     void run();
 
 private:
-    Condition *condition;
+    Semaphore *semaphore;
 };
 
 #endif
