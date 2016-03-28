@@ -1,6 +1,6 @@
 #include "CounterThread.h"
 
-CounterThread::CounterThread(int schedPolicy, int nLoops, double *pCounter = NULL)
+CounterThread::CounterThread(int schedPolicy, int nLoops, double *pCounter)
         : Thread(schedPolicy), nLoops(nLoops), pCounter(pCounter) { }
 
 void CounterThread::run() {
