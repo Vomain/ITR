@@ -6,9 +6,12 @@ SemaphoreCounterThread::SemaphoreCounterThread(int schedPolicy, int nLoops, doub
 
 void SemaphoreCounterThread::run() {
     for (int i = 0; i < nLoops; i++) {
-        semaphore->take();
-        *pCounter += 1.0;
-        sleep(1);
-        semaphore->give();
+        bool result = semaphore->take(5);
+        if(result)
+        {
+            *pCounter += 1.0;
+            sleep(10);
+            semaphore->give();
+        }
     }
 }

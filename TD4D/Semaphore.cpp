@@ -47,7 +47,6 @@ void Semaphore::take() {
 
 /*
     Idem, avec un timeout sur le temps de lock
-    //TODO à revoir
 */
 
 bool Semaphore::take(double timeout_ms) {
