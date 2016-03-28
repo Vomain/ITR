@@ -28,9 +28,9 @@ int main(int argc, char *argv[]) {
     double counter = 0.0;
 
     Semaphore semaphore(1,1);
-    SemaphoreCounterThread threadA(schedPolicy, 1000, &counter, &semaphore);
-    SemaphoreCounterThread threadB(schedPolicy, 1000, &counter, &semaphore);
-    SemaphoreCounterThread threadC(schedPolicy, 1000, &counter, &semaphore);
+    SemaphoreCounterThread threadA(schedPolicy, 100000, &counter, &semaphore);
+    SemaphoreCounterThread threadB(schedPolicy, 100000, &counter, &semaphore);
+    SemaphoreCounterThread threadC(schedPolicy, 100000, &counter, &semaphore);
     
     printf("semaphore using counterThreads created!\n");
     
