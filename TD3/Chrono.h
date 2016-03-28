@@ -17,7 +17,7 @@ public:
     double to_ms();
 
 protected:
-    double startTime_;
+    Timespec startTime_;
     Timespec stopTime_;
 };
 

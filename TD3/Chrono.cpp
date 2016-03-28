@@ -7,17 +7,17 @@ Chrono::Chrono() {
     clock_gettime(CLOCK_REALTIME, &startTime_);
 }
 
-void stop(){
+void Chrono::stop(){
     clock_gettime(CLOCK_REALTIME, &stopTime_);
 }
-void restart(){
+void Chrono::restart(){
     clock_gettime(CLOCK_REALTIME, &startTime_);
 }
 double lap(){
 
 }
 
-void isActive(){
+void Chrono::isActive(){
     return &startTime_ < &stopTime_;
 }
 
