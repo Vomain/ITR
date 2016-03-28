@@ -17,4 +17,6 @@ Timespec operator+(Timespec, Timespec);
 
 Timespec operator-(Timespec, Timespec);
 
+Timespec operator<(Timespec, Timespec);
+
 #endif //ITR_TIMESPEC_H
