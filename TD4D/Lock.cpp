@@ -14,6 +14,6 @@ Lock::Lock(Mutex *m, double timeout_ms) {
 }
 
 Lock::~Lock() {
-    printf("destroy lock");
+    printf("destroy lock\n");
     mutex->unlock();
 }

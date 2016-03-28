@@ -37,7 +37,8 @@ void Semaphore::flush() {
 
 void Semaphore::take() {
     printf("trying to take token ...\n");
-    Lock(&(this->condition));
+    Condition *cond = &condition;
+    Lock(cond);
     if (counter == 0) {
         printf("no token available\n");
         while (counter == 0) {

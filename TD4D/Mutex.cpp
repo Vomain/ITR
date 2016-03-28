@@ -16,7 +16,7 @@ void Mutex::lock() {
     {
         throw std::logic_error( "Le mutex ne peut pas être locked");
     } else {
-        printf("token taken");
+        printf("token taken\n");
     }
 }
 
