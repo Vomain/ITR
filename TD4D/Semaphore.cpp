@@ -16,7 +16,8 @@ void Semaphore::give() {
     Lock(&(this->condition)); //Protège la variable counter
     if (counter < maxCount) {
         counter++;
-        this->condition.notify();
+        printf("giving back token : %d", counter);
+        condition.notify();
     }
 }
 
@@ -43,6 +44,7 @@ void Semaphore::take() {
             printf("finished waiting");
         }
     } else {
+        printf("taking token : %d", counter);
         counter--;
     }
 }
