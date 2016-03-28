@@ -12,7 +12,8 @@ int main(int argc, char *argv[]) {
     
     printf("semaphore using counterThreads created!\n");
     
-    Timespec t1;
+    struct timespec t1;
+	struct timespec t2;
     clock_gettime(CLOCK_REALTIME, &t1);
     
     threadA.start(8);
@@ -25,7 +26,6 @@ int main(int argc, char *argv[]) {
     threadB.join();
     threadC.join();
 
-    Timespec t2;
     clock_gettime(CLOCK_REALTIME, &t2);    
     
     printTime(&t1, &t2);
