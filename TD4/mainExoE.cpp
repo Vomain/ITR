@@ -6,8 +6,10 @@ int main(int argc, char *argv[]) {
     printf("\nEXERCICE 5\n");
 
     int schedPolicy = SCHED_RR;
+    printf("Start  !");
 
     Fifo<int> fifo;  // stack of ints
+    printf("Start  !");
 
     Producer producer1(schedPolicy, 1000, &fifo);
     Producer producer2(schedPolicy, 2000, &fifo);
