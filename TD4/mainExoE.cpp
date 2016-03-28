@@ -14,18 +14,18 @@ int main(int argc, char *argv[]) {
     Consumer consumer1(schedPolicy, 1000, &fifo);
     Consumer consumer2(schedPolicy, 1000, &fifo);
     Consumer consumer3(schedPolicy, 1000, &fifo);
-    
+    printf("Start  !");
     producer1.start(8);
     producer2.start(8);
     consumer1.start(8);
     consumer2.start(8);
     consumer3.start(8);
-    
-    producer1.join(8);
-    producer2.join(8);
-    consumer1.join(8);
-    consumer2.join(8);
-    consumer3.join(8);
+    printf("Join !");
+    producer1.join(8, 1000);
+    producer2.join(8, 1000);
+    consumer1.join(8, 1000);
+    consumer2.join(8, 1000);
+    consumer3.join(8, 1000);
     
     printf("Terminé !");
     printf("Compteurs : \n   1 : %d, \n   2 : %d, \n   3 : %d\n", consumer1.compteur, consumer2.compteur, consumer3.compteur);
