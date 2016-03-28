@@ -1,5 +1,5 @@
 #include "Chrono.h"
-
+#include <stdio.h>
 int main(int argc, char *argv[]){
     Chrono chrono1 = Chrono();
     //Sleep ?
