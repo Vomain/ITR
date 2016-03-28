@@ -7,7 +7,7 @@ SemaphoreCounterThread::SemaphoreCounterThread(int schedPolicy, int nLoops, doub
 
 void SemaphoreCounterThread::run() {
     for (int i = 0; i < nLoops; i++) {
-        if(timeout <= 0){
+        if(timeout = 0){
             semaphore->take();
             *pCounter += 1.0;
             sleep(1);
@@ -15,6 +15,7 @@ void SemaphoreCounterThread::run() {
         } else {
             bool result = semaphore->take(timeout);
             if(result){
+                printf("token taken, go\n");
                 *pCounter += 1.0;
                 sleep(10);
                 semaphore->give();
