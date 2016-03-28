@@ -12,6 +12,7 @@ Condition::Condition(bool isInversionSafe)
 void Condition::wait() {
     printf("wait called on condition\n");
     int error = pthread_cond_wait(&cid, &mid);
+    printf("finished waiting : %d", error);
 }
 
 bool Condition::wait(double timeout_ms) {
