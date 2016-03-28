@@ -13,7 +13,8 @@ void Mutex::lock() {
     int error = pthread_mutex_lock(&mid);
     if(error != 0)
     {
-        throw std::logic_error( "Le mutex ne peut pas être locked, erreur : %d", error );
+        printf("error n %d", error);
+        throw std::logic_error( "Le mutex ne peut pas être locked");
     }
 }
 
