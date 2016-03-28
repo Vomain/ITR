@@ -1,5 +1,6 @@
 #include "Chrono.h"
 Chrono::Chrono() {
+    printf(stopTime_);
     clock_gettime(CLOCK_REALTIME, &stopTime_);
     clock_gettime(CLOCK_REALTIME, &startTime_);
 }
