@@ -39,7 +39,7 @@ void Semaphore::take() {
     printf("trying to take token ...\n");
     Lock(&(this->condition));
     if (counter == 0) {
-        printf('no token available\n')
+        printf("no token available\n");
         while (counter == 0) {
             printf("got to sleep mode\n");
             condition.wait();
