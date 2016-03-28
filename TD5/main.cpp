@@ -16,7 +16,8 @@ int main(int argc, char *argv[]) {
     clock_gettime(CLOCK_REALTIME, &t1);
     
     threadC.start(7);
-    sleep(30);
+    std::chrono::milliseconds timespan(30);
+    std::this_thread::sleep_for(timespan);
     threadA.start(9);
     threadB.start(8);
     
