@@ -3,11 +3,20 @@
 
 template <typename T>
 void Fifo<T>::push(T element) {
+    /**
+    * Cette fonction ajoute un élément en tête de la liste
+    * Les tâches en attentes sont notifiées
+    */
     elements.push(element);
+    condition.notify();
 }
 
 template <typename T>
 T Fifo<T>::pop() {
+    /**
+    * Cette fonction enlève l'élément en tête de la liste
+    * Si l'élément n'est pas disponible, l'appel est bloquant
+    */
     Lock lock(condition);
     while(elements.empty()){
         condition->wait();
@@ -19,6 +28,11 @@ T Fifo<T>::pop() {
 
 template <typename T>
 T Fifo<T>::pop(double timeout_ms) {
+    /**
+    * Cette fonction enlève l'élément en tête de la liste
+    * Si l'élément n'est pas disponible, l'appel est bloquant
+    * Si le timeout est dépassé, la fonction renvoie une exception
+    */
     Lock lock(condition);
     
     Timespec tmax; // On instancie notre classe Timespec
