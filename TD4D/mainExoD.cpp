@@ -47,10 +47,9 @@ int semaphoreCount(unsigned nTokens, unsigned count)
     threadC.join(8);
     threadD.join(8);
 
-    
     clock_gettime(CLOCK_REALTIME, &t2);   
     
-    printf("nThread : %d, nTokens : %d, count : %d", nThread, nTokens, count);
+    printf("nTokens : %d, count : %d", nTokens, count);
     printTime(&t1, &t2);
     printf("compteur : %0.f\n", counter);
     
