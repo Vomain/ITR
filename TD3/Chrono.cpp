@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 Chrono::Chrono() {
-    printf("gfgggf");
+    printf("chrono created\n");
     clock_gettime(CLOCK_REALTIME, &stopTime_);
     clock_gettime(CLOCK_REALTIME, &startTime_);
 }
@@ -13,8 +13,10 @@ void Chrono::stop(){
 void Chrono::restart(){
     clock_gettime(CLOCK_REALTIME, &startTime_);
 }
-double lap(){
-
+double Chrono::lap(){
+    Timespec t_lap;
+    clock_gettime(CLOCK_REALTIME, &t_lap);
+    return (t_lap - startTime_).to_ms();
 }
 
 void Chrono::isActive(){
