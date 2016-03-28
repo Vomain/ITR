@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 Chrono::Chrono() {
-    printf(stopTime_);
+    printf(stopTime_.to_ms());
     clock_gettime(CLOCK_REALTIME, &stopTime_);
     clock_gettime(CLOCK_REALTIME, &startTime_);
 }
