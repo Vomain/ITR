@@ -1,8 +1,8 @@
-#include "SemaphoreCounterThread.h"
 #include "Semaphore.h"
 #include "ThreadA.h"
 #include "ThreadB.h"
 #include "ThreadC.h"
+#include "Timespec.h"
 
 int main(int argc, char *argv[]) {
     
