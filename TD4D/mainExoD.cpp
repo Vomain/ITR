@@ -13,15 +13,15 @@ int main(int argc, char *argv[]) {
     
     printf("semaphore using counterThreads created!\n");
 
-    counterThreadA.start(8);
-    counterThreadB.start(8);
-    counterThreadC.start(8);
+    threadA.start(8);
+    threadB.start(8);
+    threadC.start(8);
 
     printf("ncountThreads started!\n");
 
-    counterThreadA.join();
-    counterThreadB.join();
-    counterThreadC.join();
+    threadA.join();
+    threadB.join();
+    threadC.join();
 
     printf("countThreads done!\n");
 

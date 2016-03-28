@@ -6,8 +6,8 @@ SemaphoreCounterThread::SemaphoreCounterThread(int schedPolicy, int nLoops, doub
 
 void SemaphoreCounterThread::run() {
     for (int i = 0; i < nLoops; i++) {
-        semaphore.take();
+        semaphore->take();
         *pCounter += 1.0;
-        semaphore.give();
+        semaphore->give();
     }
 }
