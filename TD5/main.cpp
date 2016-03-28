@@ -2,9 +2,9 @@
 #include "ThreadA.h"
 #include "ThreadB.h"
 #include "ThreadC.h"
+#include "Waiter.h"
 #include "Timespec.h"
-#include <chrono>
-#include <thread>
+
 
 int main(int argc, char *argv[]) {
     
@@ -13,13 +13,14 @@ int main(int argc, char *argv[]) {
     ThreadA threadA(&semaphore);
     ThreadB threadB(&semaphore);
     ThreadC threadC(&semaphore);
+    Waiter wiater(&semaphore);
     
     Timespec t1, t2;
     clock_gettime(CLOCK_REALTIME, &t1);
     
     threadC.start(7);
-    std::chrono::milliseconds timespan(30);
-    std::this_thread::sleep_for(timespan);
+    waiter.start(7);
+    waiter.join();
     threadA.start(9);
     threadB.start(8);
     
