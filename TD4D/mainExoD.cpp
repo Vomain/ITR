@@ -57,9 +57,8 @@ int semaphoreCount(unsigned nTokens, unsigned count)
 }
 
 int main(int argc, char *argv[]) {
-    semaphoreCount(1,1000);
-    semaphoreCount(2,1000);
-    semaphoreCount(3,1000);
-    semaphoreCount(4,1000);
-    
+    semaphoreCount(1,100);
+    semaphoreCount(2,100);
+    semaphoreCount(3,100);
+    semaphoreCount(4,100);
 }
