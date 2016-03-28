@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
         printf("NTOKEN = %d", nToken);
         double mean = 0.0;
         for(int i = 0 ; i < 5; i++){
-            double time = semaphoreCount(1,1000);
+            double time = semaphoreCount(nToken,100);
             printf("        time : %f", time);
             mean += time / 10;
         }
