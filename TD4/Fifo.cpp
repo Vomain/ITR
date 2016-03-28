@@ -8,7 +8,7 @@ void Fifo<T>::push(T element) {
     * Les tâches en attentes sont notifiées
     */
     elements.push(element);
-    condition.notify();
+    condition->notify();
 }
 
 template <typename T>
