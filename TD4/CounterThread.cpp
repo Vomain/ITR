@@ -1,11 +1,20 @@
+/** @file */
+
 #include "CounterThread.h"
-#include <stdio.h>
 
 CounterThread::CounterThread(int schedPolicy, int nLoops, double *pCounter)
-        : Thread(schedPolicy), nLoops(nLoops), pCounter(pCounter) { }
+        : Thread(schedPolicy), nLoops(nLoops), pCounter(pCounter)
+{
+    /**
+     * Thread incrémentant pCounter.
+     * Classe héritant de Thread.
+     */
+}
 
 void CounterThread::run() {
-    printf("RUN from counter Thread");
+    /**
+     * Incrémente nLoops fois pCounter.
+     */
     for (int i = 0; i < nLoops; i++) {
         *pCounter += 1.0;
     }

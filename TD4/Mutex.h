@@ -17,7 +17,7 @@ public:
 
     void unlock();
 
-private:
+protected:
     pthread_mutex_t mid;
 };
 

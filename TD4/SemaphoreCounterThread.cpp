@@ -1,3 +1,5 @@
+/** @file */
+
 #include "SemaphoreCounterThread.h"
 #include "Semaphore.h"
 #include <stdio.h>

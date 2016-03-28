@@ -15,4 +15,8 @@ public:
 
 Timespec operator+(Timespec, Timespec);
 
+Timespec operator-(Timespec, Timespec);
+
+bool operator<(Timespec, Timespec);
+
 #endif //ITR_TIMESPEC_H

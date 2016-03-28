@@ -1,3 +1,5 @@
+/** @file */
+
 #include "ProtectedCounterThread.h"
 
 int main(int argc, char *argv[]) {

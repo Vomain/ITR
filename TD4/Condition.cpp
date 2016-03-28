@@ -1,8 +1,14 @@
+/** @file */
+
 #include "Condition.h"
 #include <stdio.h>
 #include "Timespec.h"
+#include <stdexcept>
 
-Condition::Condition() : Mutex(true) { }
+
+Condition::Condition() : Mutex(true) {
+    pthread_cond_init(&cid, NULL);
+}
 
 Condition::Condition(bool isInversionSafe)
         : Mutex(isInversionSafe) {
@@ -11,6 +17,10 @@ Condition::Condition(bool isInversionSafe)
 
 void Condition::wait() {
     int error = pthread_cond_wait(&cid, &mid);
+    if(error == 1)
+    {
+        throw std::logic_error( "Le mutex de la condition n'est pas détenu par le thread courrant" );
+    }
 }
 
 bool Condition::wait(double timeout_ms) {

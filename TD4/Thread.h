@@ -3,12 +3,13 @@
 
 #include <pthread.h>
 #include "Timespec.h"
+#include "Condition.h"
 
 class Thread {
 public:
     Thread(int schedPolicy);
 
-    void start(int priority);
+    bool start(int priority);
 
     void join();
 
@@ -27,6 +28,8 @@ private:
     pthread_t tid;
     int schedPolicy;
     pthread_attr_t attr;
+    bool started;
+    Condition condition;
 };
 
 #endif
