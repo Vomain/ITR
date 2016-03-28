@@ -70,7 +70,6 @@ bool Semaphore::take(double timeout_ms) {
             } else {
                 tmaxWait = tmax - tmaxWait; // délai encore disponible
                 double timeout = tmaxWait.to_ms();
-                printf("wait for max %.1f\n", timeout);
                 bool result = condition.wait(timeout);
                 if (!result) { // si c'est un timeout qui a libéré le thread
                     return false;

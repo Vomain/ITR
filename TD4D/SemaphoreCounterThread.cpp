@@ -15,12 +15,9 @@ void SemaphoreCounterThread::run() {
         } else {
             bool result = semaphore->take(timeout);
             if(result){
-                printf("token taken, go\n");
                 *pCounter += 1.0;
                 sleep(10);
                 semaphore->give();
-            } else {
-                printf("abandoned waiting\n");
             }
         }
     }
