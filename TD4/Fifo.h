@@ -2,13 +2,14 @@
 #define ITR_FIFO_H
 
 #include <queue>
-#include "Condition.h"
 #include <stdio.h>
+#include "Condition.h"
+#include "Lock.h"
 
+template <typename T>
 class Fifo {
 public:
-    // On veut une FIFO de nombres entiers, on choisit donc T = int
-    Fifo(std::queue<int>, class EmptyException);
+    Fifo() {};
 
     class EmptyException : public std::exception {
     public:
@@ -20,16 +21,19 @@ public:
         int errorCode;
     };
 
-    void push(int);
+    void push(T);
 
     // FIXME: pop ne retourne rien normalement. Erreur sur l'UML ? Sinon, on renvoie element.front() avant de pop
-    int pop();
+    // EDIT: c'est ce que j'ai fait au final
+    T pop();
 
-    int pop(double);
-
+    T pop(double);
+    
+    void print();
+    
+    Condition *condition;
 private:
-    std::queue<int> elements;
-    Condition condition;
+    std::queue<T> elements;
 
 };
 
