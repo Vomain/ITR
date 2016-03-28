@@ -33,5 +33,5 @@ int main(int argc, char *argv[]) {
     threadC.join();
 
     t2 = t2 - t1;
-    printf("Le thread A est terminé en %f ms", t2.to_ms());
+    printf("Le thread A est terminé en %f ms\n", t2.to_ms());
 }
