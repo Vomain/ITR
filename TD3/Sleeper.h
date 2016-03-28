@@ -1,11 +1,11 @@
-#ifndef WAITER_INCLUDED
-#define WAITER_INCLUDED
+#ifndef SLEEPER_INCLUDED
+#define SLEEPER_INCLUDED
 
 #include "Thread.h"
 
-class Waiter : public Thread {
+class Sleeper : public Thread {
 public:
-    Waiter();
+    Sleeper();
 
 protected:
     void run();
