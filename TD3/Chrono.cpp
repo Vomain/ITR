@@ -1,4 +1,6 @@
 #include "Chrono.h"
+#include<stdio>
+
 Chrono::Chrono() {
     printf(stopTime_);
     clock_gettime(CLOCK_REALTIME, &stopTime_);
