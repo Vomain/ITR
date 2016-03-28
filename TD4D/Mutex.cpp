@@ -1,6 +1,5 @@
 #include "Mutex.h"
 #include <stdexcept>
-#include <stdio.h>
 
 Mutex::Mutex(bool isInversionSafe) {
     pthread_mutexattr_t mutexAttr;
@@ -15,8 +14,6 @@ void Mutex::lock() {
     if(error != 0)
     {
         throw std::logic_error( "Le mutex ne peut pas être locked");
-    } else {
-        printf("token taken\n");
     }
 }
 
@@ -38,7 +35,6 @@ bool Mutex::trylock() {
 }
 
 void Mutex::unlock() {
-    printf("token unlocked\n");
     pthread_mutex_unlock(&mid);
 }
 	
