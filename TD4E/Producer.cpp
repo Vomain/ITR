@@ -1,6 +1,6 @@
 #include "Producer.h"
 
-Producer::Producer(int schedPolicy, int nLoops, Fifo<int> fifo) : Thread(schedPolicy), fifo(fifo), nLoops(nLoops)
+Producer::Producer(int schedPolicy, int nLoops, Fifo<int> *fifo) : Thread(schedPolicy), fifo(fifo), nLoops(nLoops)
 {}
 
 void Producer::run() {
