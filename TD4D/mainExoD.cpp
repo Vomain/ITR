@@ -49,7 +49,7 @@ int semaphoreCount(unsigned nTokens, unsigned count)
 
     clock_gettime(CLOCK_REALTIME, &t2);   
     
-    printf("nTokens : %d, count : %d", nTokens, count);
+    printf("nTokens : %d, count : %d\n", nTokens, count);
     printTime(&t1, &t2);
     printf("compteur : %0.f\n", counter);
     
