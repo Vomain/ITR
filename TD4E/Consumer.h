@@ -15,6 +15,7 @@ public:
     
 private:
     Fifo<int> *fifo;
+    int nLoops;
 };
 
 

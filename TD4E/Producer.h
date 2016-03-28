@@ -13,6 +13,7 @@ public:
 
 private:
     Fifo<int> *fifo;
+    int nLoops;
 };
 
 #endif //ITR_PRODUCER_H

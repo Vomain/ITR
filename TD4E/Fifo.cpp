@@ -10,7 +10,7 @@ template <typename T>
 T Fifo<T>::pop() {
     Lock lock(condition);
     while(elements.empty()){
-        condition.wait();
+        condition->wait();
     }
     T element = elements.front();
     elements.pop();
@@ -39,7 +39,7 @@ T Fifo<T>::pop(double timeout_ms) {
         } else {
             tmaxWait = tmax - tmaxWait; // délai encore disponible
             double timeout = tmaxWait.to_ms();
-            bool result = condition.wait(timeout);
+            bool result = condition->wait(timeout);
             if (!result) { // si c'est un timeout qui a libéré le thread
                 throw EmptyException();
             }
