@@ -6,12 +6,12 @@
 
 class Consumer : public CounterThread {
 public:
-    Consumer(int schedPolicy, int nLoops, double *pCounter,  Fifo<int> *fifo);
+    Consumer(int schedPolicy, int nLoops, Mutex *mutex, Fifo<int> *fifo);
 
-    char bite();
+    void run();
 
 private:
-
+    Mutex *mutex;
     Fifo<int> *fifo;
 };
 

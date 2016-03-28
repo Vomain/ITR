@@ -1,17 +1,17 @@
 #include "Consumer.h"
 
-Consumer::Consumer(int schedPolicy, int nLoops, double *pCounter, Fifo<int> *fifo) :
-        CounterThread(schedPolicy, nLoops, pCounter), fifo(fifo) {
+Consumer::Consumer(int schedPolicy, int nLoops, Mutex *mutex, Fifo<int> *fifo) :
+        CounterThread(schedPolicy, nLoops, pCounter), mutex(mutex), fifo(fifo) {
 
 }
 
-char Consumer::bite() {
+void Consumer::run() {
 
     for (int i = 0; i < nLoops; i++) {
         try {
             {
-                printf("HOLA");
-                Lock lock(fifo->condition);
+                printf("HOLA\n");
+                Lock lock(mutex);
                 printf("Je pop !\n");
                 fifo->pop();
             }

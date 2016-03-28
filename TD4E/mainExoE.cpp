@@ -13,6 +13,7 @@ int main(int argc, char *argv[]) {
     printf("C'est bon, j'ai réussi à compiler !\n");
 
     Fifo<int> fifo;  // stack of ints
+    Mutex mutex(true);
 
     int n = 10;
 
@@ -22,16 +23,17 @@ int main(int argc, char *argv[]) {
         fifo.push(666);
     }
 
-    Consumer consumer(schedPolicy, 15, &counter, &fifo);
+    Consumer consumer(schedPolicy, 10, &mutex, &fifo);
 
+    consumer.start(8);
     printf("J'ai créé consumer \n");
 
     for (int i = 0; i < 100; i++) {
-        consumer.bite();
-        char * result = (char *) consumer.bite();
+        printf("Je rentre dans la boucle\n");
+        consumer.run();
+//        char * result = (char *) consumer.run();
         printf("ICI C'EST LA BOUCLE\n");
-        printf("%s\n",  result);
-
+//        printf("%s\n",  result);
     }
 
 //    ProtectedCounterThread counterThreadA(schedPolicy, 10, &counter, &mutex);
