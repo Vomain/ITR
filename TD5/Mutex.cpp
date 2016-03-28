@@ -5,7 +5,11 @@ Mutex::Mutex(bool isInversionSafe) {
     pthread_mutexattr_t mutexAttr;
     pthread_mutexattr_init(&mutexAttr);
     pthread_mutexattr_settype(&mutexAttr, PTHREAD_MUTEX_RECURSIVE);
-    //todo set isInversionSafe
+    if(isInversionSafe)
+    {
+        pthread_mutexattr_setprotocol(&mutexAttr, PTHREAD_PRIO_INHERIT);
+    }
+    
     pthread_mutex_init(&mid, &mutexAttr);
 }
 

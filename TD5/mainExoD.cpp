@@ -1,43 +1,30 @@
 #include "SemaphoreCounterThread.h"
-#include "Semaphore.h"
+#include "Mutex.h"
+#include "ProtectedCounterThread.h"
 
-
-double semaphoreCount(unsigned nTokens, unsigned count)
-{
-    int schedPolicy = SCHED_RR;
-    double counter = 0.0;
-
-    Semaphore semaphore(nTokens, nTokens);
-    SemaphoreCounterThread threadA(schedPolicy, count, &counter, &semaphore);
-    SemaphoreCounterThread threadB(schedPolicy, count, &counter, &semaphore);
-    SemaphoreCounterThread threadC(schedPolicy, count, &counter, &semaphore);
+int main(int argc, char *argv[]) {
     
+    Mutex mutex(false);
+    int schedPolicy = SCHED_RR;
+    double counter = 0.0; // la ressource accessible par les trois tâches
+    
+    ProtectedCounterThread threadA(schedPolicy, 100, &counter, &mutex);
+    ProtectedCounterThread threadB(schedPolicy, 100, &counter, &mutex);
+    ProtectedCounterThread threadC(schedPolicy, 100, &counter, &mutex);
     
     Timespec t1, t2;
     clock_gettime(CLOCK_REALTIME, &t1);
     
-    threadA.start(8);
+    threadA.start(9);
     threadB.start(8);
-    threadC.start(8);
+    threadC.start(7);
     
-    threadA.join(8);
-    threadB.join(8);
-    threadC.join(8);
-
+    threadA.join();
     clock_gettime(CLOCK_REALTIME, &t2);   
-    t2 = t2 - t1;
-    return t2.to_ms();
-}
+    
+    threadB.join();
+    threadC.join();
 
-int main(int argc, char *argv[]) {
-    for(int nToken = 1; nToken < 4; nToken ++){
-        printf("NTOKEN = %d\n", nToken);
-        double mean = 0.0;
-        for(int i = 0 ; i < 5; i++){
-            double time = semaphoreCount(nToken,200);
-            printf("        time : %f\n", time);
-            mean += time / 5;
-        }
-        printf("        Mean time for nToken=%d : %f\n", nToken,mean);
-    }
+    t2 = t2 - t1;
+    printf("Le thread A est terminé en %f ms", t2.to_ms());
 }

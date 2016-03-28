@@ -4,7 +4,7 @@
 #include <stdexcept> 
 
 
-Condition::Condition() : Mutex(true) {
+Condition::Condition() : Mutex(false) {
     pthread_cond_init(&cid, NULL);
 }
 
