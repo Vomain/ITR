@@ -16,11 +16,9 @@ Condition::Condition(bool isInversionSafe)
 void Condition::wait() {
     printf("wait called on condition\n");
     int error = pthread_cond_wait(&cid, &mid);
-    printf("finished waiting, result : %d\n", error);
-    if(error != 0)
+    if(error == 1)
     {
-        printf("error : %d", error);
-        throw std::logic_error( "Le mutex n'est pas détenu par le thread courrant" );
+        throw std::logic_error( "Le mutex de la condition n'est pas détenu par le thread courrant" );
     }
 }
 

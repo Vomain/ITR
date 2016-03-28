@@ -1,4 +1,5 @@
 #include "Mutex.h"
+#include <stdexcept>
 
 Mutex::Mutex(bool isInversionSafe) {
     pthread_mutexattr_t mutexAttr;
@@ -9,7 +10,11 @@ Mutex::Mutex(bool isInversionSafe) {
 }
 
 void Mutex::lock() {
-    pthread_mutex_lock(&mid);
+    int error = pthread_mutex_lock(&mid);
+    if(error == 1)
+    {
+        throw std::logic_error( "Le mutex n'est pas détenu par le thread courrant" );
+    }
 }
 
 bool Mutex::lock(double timeout_ms) {
