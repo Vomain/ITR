@@ -13,10 +13,10 @@ Semaphore::Semaphore(unsigned counter = 0, unsigned maxCount = UINT_MAX, Conditi
 */
 
 void Semaphore::give() {
-    Lock(&condition); //Protège la variable counter
+    Lock(&(this->condition); //Protège la variable counter
     if (counter < maxCount) {
         counter++;
-        condition.notify();
+        this->condition.notify();
     }
 }
 
