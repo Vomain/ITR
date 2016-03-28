@@ -39,13 +39,13 @@ void Semaphore::take() {
     Lock(&(this->condition));
     if (counter == 0) {
         while (counter == 0) {
-            printf("waiting for semaphore");
+            printf("waiting for semaphore\n");
             condition.wait();
-            printf("finished waiting");
+            printf("finished waiting\n");
         }
     } else {
-        printf("taking token : %d\n", counter);
         counter--;
+        printf("taking token : %d\n", counter);
     }
 }
 
