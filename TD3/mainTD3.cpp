@@ -5,7 +5,7 @@ int main(int argc, char *argv[]){
     //Sleep ?
     chrono1.stop();
     Timespec temps;
-    //temps = chrono1.stopTime() - chrono1.startTime();
+    printf("lolfd %f\n", chrono1.lap());
     printf("compteur : \n");
 
 }
