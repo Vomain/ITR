@@ -3,14 +3,29 @@
 
 #include <queue>
 #include "Condition.h"
+#include <stdio.h>
 
 class Fifo {
 public:
-    Fifo(std::queue<int> elements);
+    // On veut une FIFO de nombres entiers, on choisit donc T = int
+    Fifo(std::queue<int>, class EmptyException);
 
-    int push();
-    void pop();
-    bool pop(double);
+    class EmptyException : public std::exception {
+    public:
+        virtual const char *what() const throw() {
+            return "Empty exception!\n";
+        }
+
+    private:
+        int errorCode;
+    };
+
+    void push(int);
+
+    // FIXME: pop ne retourne rien normalement. Erreur sur l'UML ? Sinon, on renvoie element.front() avant de pop
+    int pop();
+
+    int pop(double);
 
 private:
     std::queue<int> elements;
