@@ -2,7 +2,6 @@
 #define SEMAPHORE_H_INCLUDED
 
 #include "Condition.h"
-#include "Lock.h"
 #include <stdio.h>
 
 class Semaphore {

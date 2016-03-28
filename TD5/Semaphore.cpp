@@ -1,10 +1,10 @@
 #include "Semaphore.h"
+#include "Lock.h"
 
 unsigned UINT_MAX = 1000;
 
-Semaphore::Semaphore(unsigned counter = 0, unsigned maxCount = UINT_MAX) : counter(counter), maxCount(maxCount) {
-    condition();
-}
+Semaphore::Semaphore(unsigned counter = 0, unsigned maxCount = UINT_MAX) : counter(counter), maxCount(maxCount), condition()
+{}
 
 
 /*
@@ -13,7 +13,7 @@ Semaphore::Semaphore(unsigned counter = 0, unsigned maxCount = UINT_MAX) : count
 */
 
 void Semaphore::give() {
-    Lock(&condition); //Protège la variable counter
+    Lock lock(&condition); //Protège la variable counter
     if (counter < maxCount) {
         counter++;
         condition.notify();
@@ -35,7 +35,7 @@ void Semaphore::flush() {
 */
 
 void Semaphore::take() {
-    Lock(&condition);
+    Lock lock(&condition);
     if (counter == 0) {
         while (counter == 0) {
             condition.wait();
@@ -47,7 +47,6 @@ void Semaphore::take() {
 
 /*
     Idem, avec un timeout sur le temps de lock
-    //TODO à revoir
 */
 
 bool Semaphore::take(double timeout_ms) {
@@ -57,29 +56,24 @@ bool Semaphore::take(double timeout_ms) {
     Timespec t_timeout;
     t_timeout.from_ms(timeout_ms);
 
-    // tmax devient le temps maximal à ne pas dépasser
+    // tmax devient l'échéance à ne pas dépasser
     tmax = tmax + t_timeout;
 
-    Lock(&condition);
+    Lock lock(&condition);
     if (counter == 0) {
         while (counter == 0) {
             Timespec tmaxWait;
             clock_gettime(CLOCK_REALTIME, &tmaxWait);
-            tmaxWait = tmax - tmaxWait; // Durée maximale à attendre
-
-            // FIXME: si tmaxWait négatif, on a dépassé notre timeout initial
-            if (tmaxWait < 0) {
-
+            
+            if(tmax < tmaxWait){ // si échéance est avant le temps actuel
                 return false;
-
             } else {
-
+                tmaxWait = tmax - tmaxWait; // délai encore disponible
                 double timeout = tmaxWait.to_ms();
                 bool result = condition.wait(timeout);
                 if (!result) { // si c'est un timeout qui a libéré le thread
                     return false;
                 }
-
             }
         }
 

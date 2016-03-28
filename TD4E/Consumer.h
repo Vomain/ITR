@@ -1,18 +1,21 @@
 #ifndef ITR_CONSUMER_H
 #define ITR_CONSUMER_H
 
-#include "CounterThread.h"
+#include "Thread.h"
 #include "Fifo.h"
+#include "Condition.h"
 
-class Consumer : public CounterThread {
+class Consumer : public Thread {
 public:
-    Consumer(int schedPolicy, int nLoops, Mutex *mutex, Fifo<int> *fifo);
+    Consumer(int schedPolicy, int nLoops, Fifo<int> *fifo);
 
     void run();
 
+    int compteur;
+    
 private:
-    Mutex *mutex;
     Fifo<int> *fifo;
+    int nLoops;
 };
 
 

@@ -28,7 +28,9 @@ public:
     T pop();
 
     T pop(double);
-
+    
+    void print();
+    
     Condition *condition;
 private:
     std::queue<T> elements;

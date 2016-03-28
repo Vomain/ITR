@@ -22,6 +22,17 @@ Timespec operator-(Timespec ts1, Timespec ts2) {
     return ts1;
 }
 
+bool operator<(Timespec ts1, Timespec ts2) {
+    /**
+     * Surcharge de l'opérateur '<' 
+     */
+    if (ts1.tv_sec != ts2.tv_sec)   // Si les secondes sont différentes
+        return ts1.tv_sec < ts2.tv_sec; 
+    else { // si elles sont égales, on compare les nanosecondes
+        return ts1.tv_nsec < ts2.tv_nsec; 
+    }
+}
+
 Timespec Timespec::from_ms(double t_ms) {
     /**
      * Pour un double t_ms (temps en ms) donné, renvoie le Timespec convertit
