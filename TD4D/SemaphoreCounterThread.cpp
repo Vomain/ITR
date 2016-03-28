@@ -1,7 +1,7 @@
 #include "SemaphoreCounterThread.h"
 #include "Semaphore.h"
 
-SemaphoreCounterThread::SemaphoreCounterThread(int schedPolicy, int nLoops, double *pCounter, Semaphore *semaphore, timeout=0) : CounterThread(schedPolicy, nLoops, pCounter), semaphore(semaphore) 
+SemaphoreCounterThread::SemaphoreCounterThread(int schedPolicy, int nLoops, double *pCounter, Semaphore *semaphore, double timeout=0) : CounterThread(schedPolicy, nLoops, pCounter), semaphore(semaphore), timeout(timeout) 
 {}
 
 void SemaphoreCounterThread::run() {
