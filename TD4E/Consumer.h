@@ -5,7 +5,7 @@
 #include "Fifo.h"
 #include "Condition.h"
 
-class Consumer : public CounterThread {
+class Consumer : public Thread {
 public:
     Consumer(int schedPolicy, int nLoops, Fifo<int> *fifo);
 
