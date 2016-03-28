@@ -14,9 +14,15 @@ void Chrono::restart(){
     clock_gettime(CLOCK_REALTIME, &startTime_);
 }
 double Chrono::lap(){
-    Timespec t_lap;
-    clock_gettime(CLOCK_REALTIME, &t_lap);
-    return (t_lap - startTime_).to_ms();
+    if (this->isActive()){ //stopTime_ < startTime_
+        Timespec t_lap;
+        clock_gettime(CLOCK_REALTIME, &t_lap);
+        return (t_lap - startTime_).to_ms();
+    }
+    else{ // stopTime_ > startTime_ : le chrono est arreté
+        return (stopTime_ - startTime_).to_ms();
+    }
+
 }
 
 bool Chrono::isActive(){
