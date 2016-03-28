@@ -1,6 +1,7 @@
 #include "Chrono.h"
 Chrono::Chrono() {
-
+    clock_gettime(CLOCK_REALTIME, &stopTime_);
+    clock_gettime(CLOCK_REALTIME, &startTime_);
 }
 
 void stop(){
@@ -8,6 +9,12 @@ void stop(){
 }
 void restart(){
     clock_gettime(CLOCK_REALTIME, &startTime_);
-    clock_gettime(CLOCK_REALTIME, &stopTime_);
+}
+double lap(){
+
+}
+
+void isActive(){
+    return &startTime_ < &stopTime_;
 }
 
