@@ -19,7 +19,7 @@ double Chrono::lap(){
     return (t_lap - startTime_).to_ms();
 }
 
-void Chrono::isActive(){
+bool Chrono::isActive(){
     return &startTime_ < &stopTime_;
 }
 
