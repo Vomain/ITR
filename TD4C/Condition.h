@@ -3,18 +3,24 @@
 
 #include "Mutex.h"
 
-class Condition: public Mutex
-{
+class Condition : public Mutex {
 public:
-	Condition();
-	Condition(bool);
-	void wait();
-	bool wait(double timeout_ms);
-	void notify();
-	void notifyAll();
-	~Condition();
+    Condition();
+
+    Condition(bool);
+
+    void wait();
+
+    bool wait(double timeout_ms);
+
+    void notify();
+
+    void notifyAll();
+
+    ~Condition();
+
 private:
-	pthread_cond_t cid;
+    pthread_cond_t cid;
 };
 
 #endif

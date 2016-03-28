@@ -6,7 +6,7 @@ Lock::Lock(Mutex *m) {
 }
 
 Lock::Lock(Mutex *m, double timeout_ms) {
-	mutex = m;
+    mutex = m;
     if (!m->lock(timeout_ms)) {
         throw TimeoutException();
     }

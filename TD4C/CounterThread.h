@@ -4,15 +4,15 @@
 #include "Thread.h"
 
 
-
-class CounterThread: public Thread
-{
+class CounterThread : public Thread {
 public:
-	CounterThread(int schedPolicy, int nLoops, double *pCounter);
+    CounterThread(int schedPolicy, int nLoops, double *pCounter);
+
 protected:
-	void run();
-	int nLoops;
-	double *pCounter;
+    void run();
+
+    int nLoops;
+    double *pCounter;
 };
 
 #endif

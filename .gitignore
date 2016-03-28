@@ -27,12 +27,9 @@
 *.out
 *.app
 
-# Word Documents
-*.docx
-*.pdf
-
-# Zip
-*.zip
-
-# CLion
-CMakeLists.txt
+# Tout sauf les .cpp et .h
+*
+!*/
+!*.cpp
+!*.h
+!*.xlsx

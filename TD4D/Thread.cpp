@@ -9,23 +9,22 @@ Thread::Thread(int schedPolicy) : schedPolicy(schedPolicy) {
 }
 
 bool Thread::start(int priority) {
-	bool result;
-	
-	{
-		Lock lock(&condition);
-		while(started)
-		{
-			condition.wait();
-			result = false;
-		}
-		started = true;
-	}
-		
+    bool result;
+
+    {
+        Lock lock(&condition);
+        while (started) {
+            condition.wait();
+            result = false;
+        }
+        started = true;
+    }
+
     pthread_attr_setschedpolicy(&attr, schedPolicy);
     sched_param schedParams;
     schedParams.sched_priority = priority;
     pthread_attr_setschedparam(&attr, &schedParams);
-    pthread_attr_setinheritsched(&attr, PTHREAD_EXPLICIT_SCHED); 
+    pthread_attr_setinheritsched(&attr, PTHREAD_EXPLICIT_SCHED);
     pthread_create(&tid, &attr, call_run, this);
     return result;
 }
@@ -44,11 +43,11 @@ int Thread::join(double timeout_ms) {
 }
 
 void *Thread::call_run(void *arg_pointer) {
-	Thread *t = (Thread *) arg_pointer;
-	t->run();
-	Lock lock(&(t->condition));
-	t->started = false;
-	(t->condition).notify();
+    Thread *t = (Thread *) arg_pointer;
+    t->run();
+    Lock lock(&(t->condition));
+    t->started = false;
+    (t->condition).notify();
 }
 
 void Thread::run() { }

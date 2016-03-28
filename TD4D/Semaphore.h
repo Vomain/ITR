@@ -3,17 +3,21 @@
 
 #include "Condition.h"
 
-class Semaphore
-{
+class Semaphore {
 public:
     Semaphore(unsigned, unsigned);
-	void give();
-	void flush();
-	void take();
-	bool take(double);
+
+    void give();
+
+    void flush();
+
+    void take();
+
+    bool take(double);
+
 private:
-	unsigned counter;
-	unsigned maxCount;
+    unsigned counter;
+    unsigned maxCount;
     Condition condition;
 };
 
