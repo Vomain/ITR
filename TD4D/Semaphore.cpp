@@ -38,7 +38,9 @@ void Semaphore::take() {
     Lock(&(this->condition));
     if (counter == 0) {
         while (counter == 0) {
+            printf("waiting for semaphore");
             condition.wait();
+            printf("finished waiting");
         }
     } else {
         counter--;
