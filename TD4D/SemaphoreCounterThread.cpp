@@ -1,5 +1,6 @@
 #include "SemaphoreCounterThread.h"
 #include "Semaphore.h"
+#include <stdio.h>
 
 SemaphoreCounterThread::SemaphoreCounterThread(int schedPolicy, int nLoops, double *pCounter, Semaphore *semaphore, double timeout=0) : CounterThread(schedPolicy, nLoops, pCounter), semaphore(semaphore), timeout(timeout) 
 {}
@@ -17,6 +18,8 @@ void SemaphoreCounterThread::run() {
                 *pCounter += 1.0;
                 sleep(10);
                 semaphore->give();
+            } else {
+                printf("abandoned waiting\n");
             }
         }
     }
