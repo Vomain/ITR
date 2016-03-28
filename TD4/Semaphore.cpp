@@ -8,7 +8,7 @@ unsigned UINT_MAX = 1000;
 Semaphore::Semaphore(unsigned counter = 0, unsigned maxCount = UINT_MAX) : counter(counter), maxCount(maxCount),
                                                                            condition() {
     /**
-     * Implémente un sémaphore, une sorte de "boîte à jetons"0
+     * Implémente un sémaphore, une sorte de "boîte à jetons"
      */
 }
 
