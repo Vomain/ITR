@@ -12,7 +12,7 @@ void SemaphoreCounterThread::run() {
             sleep(1);
             semaphore->give();
         } else {
-            result = semaphore->take(timeout);
+            bool result = semaphore->take(timeout);
             if(result){
                 *pCounter += 1.0;
                 sleep(10);
