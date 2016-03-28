@@ -1,6 +1,7 @@
 #include "SemaphoreCounterThread.h"
 #include "Semaphore.h"
 
+
 double semaphoreCount(unsigned nTokens, unsigned count)
 {
     int schedPolicy = SCHED_RR;
@@ -12,7 +13,7 @@ double semaphoreCount(unsigned nTokens, unsigned count)
     SemaphoreCounterThread threadC(schedPolicy, count, &counter, &semaphore);
     SemaphoreCounterThread threadD(schedPolicy, count, &counter, &semaphore);
     
-    Timespec t1, t2
+    Timespec t1, t2;
     clock_gettime(CLOCK_REALTIME, &t1);
     
     threadA.start(8);
