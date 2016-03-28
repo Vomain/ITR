@@ -1,6 +1,6 @@
 #include "Mutex.h"
 #include <stdexcept>
-#include <stdio>
+#include <stdio.h>
 
 Mutex::Mutex(bool isInversionSafe) {
     pthread_mutexattr_t mutexAttr;
