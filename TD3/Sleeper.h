@@ -3,6 +3,10 @@
 
 #include "Thread.h"
 
+/*
+ * Création d'un thread qui ne fait qu'attendre, pour les tests
+ */
+
 class Sleeper : public Thread {
 public:
     Sleeper(int ms_to_wait);
