@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
         printf("NTOKEN = %d\n", nToken);
         double mean = 0.0;
         for(int i = 0 ; i < 5; i++){
-            double time = semaphoreCount(nToken,200);
+            double time = semaphoreCount(nToken,2000);
             printf("        time : %f\n", time);
             mean += time / 5;
         }
