@@ -1,5 +1,5 @@
 #include "Chrono.h"
-#include<stdio>
+#include <stdio.h>
 
 Chrono::Chrono() {
     printf(stopTime_);
