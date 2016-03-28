@@ -4,7 +4,7 @@
 #include "Semaphore.h"
 
 
-double semaphoreCount(unsigned nTokens, unsigned count)
+double semaphoreCount(unsigned nTokens, int count)
 {
     int schedPolicy = SCHED_RR;
     double counter = 0.0;
