@@ -1,9 +1,12 @@
 #include "ProtectedCounterThread.h"
+#include "Semaphore.h"
 
 int main(int argc, char *argv[]) {
     int schedPolicy = SCHED_RR;
     double counter = 0.0;
 
+    Semaphore semaphore(1,1);
+        
     Mutex mutex(true);
 
 

@@ -65,21 +65,16 @@ bool Semaphore::take(double timeout_ms) {
         while (counter == 0) {
             Timespec tmaxWait;
             clock_gettime(CLOCK_REALTIME, &tmaxWait);
-            tmaxWait = tmax - tmaxWait; // Durée maximale à attendre
-
-            // FIXME: si tmaxWait négatif, on a dépassé notre timeout initial
-            if (tmaxWait < 0) {
-
+            
+            if(tmax < tmaxWait){ // si échéance est avant le temps actuel
                 return false;
-
             } else {
-
+                tmaxWait = tmax - tmaxWait; // délai encore disponible
                 double timeout = tmaxWait.to_ms();
                 bool result = condition.wait(timeout);
                 if (!result) { // si c'est un timeout qui a libéré le thread
                     return false;
                 }
-
             }
         }
 
