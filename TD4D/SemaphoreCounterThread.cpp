@@ -1,5 +1,5 @@
 #include "SemaphoreCounterThread.h"
-#include "Lock.h"
+#include "Semaphore.h"
 
 SemaphoreCounterThread::SemaphoreCounterThread(int schedPolicy, int nLoops, double *pCounter, Semaphore *semaphore)
         : CounterThread(schedPolicy, nLoops, pCounter), semaphore(semaphore) { }
