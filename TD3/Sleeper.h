@@ -5,7 +5,7 @@
 
 class Sleeper : public Thread {
 public:
-    Sleeper();
+    Sleeper(int seconds_to_wait);
 
 protected:
     void run();
