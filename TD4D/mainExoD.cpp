@@ -11,7 +11,10 @@ int main(int argc, char *argv[]) {
     SemaphoreCounterThread threadC(schedPolicy, 1000, &counter, &semaphore);
     
     printf("semaphore using counterThreads created!\n");
-
+    
+    Timespec t1;
+    clock_gettime(CLOCK_REALTIME, &t1);
+    
     threadA.start(8);
     threadB.start(8);
     threadC.start(8);
@@ -22,7 +25,12 @@ int main(int argc, char *argv[]) {
     threadB.join();
     threadC.join();
 
-    printf("countThreads done!\n");
+    Timespec t2;
+    clock_gettime(CLOCK_REALTIME, &t2);    
+    
+    t2 = t2 - t1;
+    
+    printf("countThreads done! %f:%f\n", t2.tv_sec, t2_tv_nsec);
 
     printf("compteur : %0.f\n", counter);
     return 0;
