@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
     int schedPolicy = SCHED_RR;
     double counter = 0.0;
 
-    Semaphore semaphore(1,1);
+    Semaphore semaphore(3,3);
     SemaphoreCounterThread threadA(schedPolicy, 100000, &counter, &semaphore);
     SemaphoreCounterThread threadB(schedPolicy, 100000, &counter, &semaphore);
     SemaphoreCounterThread threadC(schedPolicy, 100000, &counter, &semaphore);
