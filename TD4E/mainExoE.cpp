@@ -9,12 +9,14 @@ int main(int argc, char *argv[]) {
 
     Fifo<int> fifo;  // stack of ints
 
-    Producer producer(schedPolicy, 30, &fifo);
-    Consumer consumer1(schedPolicy, 10, &fifo);
-    Consumer consumer2(schedPolicy, 10, &fifo);
-    Consumer consumer3(schedPolicy, 10, &fifo);
+    Producer producer1(schedPolicy, 1000, &fifo);
+    Producer producer2(schedPolicy, 2000, &fifo);
+    Consumer consumer1(schedPolicy, 1000, &fifo);
+    Consumer consumer2(schedPolicy, 1000, &fifo);
+    Consumer consumer3(schedPolicy, 1000, &fifo);
     
-    producer.start(8);
+    producer1.start(8);
+    producer2.start(8);
     consumer1.start(8);
     consumer2.start(8);
     consumer3.start(8);
@@ -25,7 +27,7 @@ int main(int argc, char *argv[]) {
     consumer3.join(8);
     
     printf("Terminé !");
-    printf("Compteurs : \n   1 : %d, \n   2 : %d, \n   3 : %d", consumer1.compteur, consumer2.compteur, consumer3.compteur);
+    printf("Compteurs : \n   1 : %d, \n   2 : %d, \n   3 : %d\n", consumer1.compteur, consumer2.compteur, consumer3.compteur);
         
     return 0;
 }
