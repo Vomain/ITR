@@ -29,7 +29,6 @@ bool Mutex::lock(double timeout_ms) {
     /**
      * Version avec timeout.
      */
-    printf("Lock mutex\n");
 
     Timespec t1; // On instancie notre classe Timespec
     clock_gettime(CLOCK_REALTIME, &t1); // Obtention du temps présent absolu
