@@ -30,6 +30,10 @@ double semaphoreCount(unsigned nTokens, unsigned count)
     return t2.to_ms();
 }
 
+// Avec un seul jeton, un seul thread incrément le compteur, les autres font timeout
+// Avec deux jetons, un appel sur trois fait un timeout
+// Avec trois jetons, on n'a pas de timeout
+
 int main(int argc, char *argv[]) {
     semaphoreCount(1, 10);
     semaphoreCount(2, 10);
