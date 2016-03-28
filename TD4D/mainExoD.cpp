@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
     
     t2 = t2 - t1;
     
-    printf("countThreads done! %f:%f\n", t2.tv_sec, t2_tv_nsec);
+    printf("countThreads done! %f:%f\n", t2.tv_sec, t2.tv_nsec);
 
     printf("compteur : %0.f\n", counter);
     return 0;
