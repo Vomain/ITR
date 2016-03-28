@@ -32,7 +32,8 @@ int semaphoreCount(unsigned nThread, unsigned nTokens, unsigned count)
     
     for(int i = 0; i < nThread;i++)
     {
-        table[i] = SemaphoreCounterThread thread(schedPolicy, count, &counter, &semaphore);
+        SemaphoreCounterThread thread(schedPolicy, count, &counter, &semaphore);
+        table[i] = thread;
     }
     
     struct timespec t1;
