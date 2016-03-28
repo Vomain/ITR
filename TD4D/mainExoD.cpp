@@ -33,13 +33,13 @@ double semaphoreCount(unsigned nTokens, unsigned count)
 
 int main(int argc, char *argv[]) {
     for(int nToken = 1; nToken < 5; nToken ++){
-        printf("NTOKEN = %d", nToken);
+        printf("NTOKEN = %d\n", nToken);
         double mean = 0.0;
         for(int i = 0 ; i < 5; i++){
             double time = semaphoreCount(nToken,100);
-            printf("        time : %f", time);
+            printf("        time : %f\n", time);
             mean += time / 10;
         }
-        printf("        Mean time for nToken=%d : %f", nToken,mean);
+        printf("        Mean time for nToken=%d : %f\n", nToken,mean);
     }
 }
