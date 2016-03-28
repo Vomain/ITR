@@ -5,8 +5,7 @@ int main(int argc, char *argv[]) {
     int schedPolicy = SCHED_RR;
     double counter = 0.0;
 
-    Condition condition();
-    Semaphore semaphore(2,2, condition);
+    Semaphore semaphore(2,2);
     SemaphoreCounterThread threadA(schedPolicy, 10, &counter, &semaphore);
     SemaphoreCounterThread threadB(schedPolicy, 10, &counter, &semaphore);
     SemaphoreCounterThread threadC(schedPolicy, 10, &counter, &semaphore);

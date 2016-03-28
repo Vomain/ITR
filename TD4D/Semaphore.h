@@ -6,7 +6,7 @@
 
 class Semaphore {
 public:
-    Semaphore(unsigned, unsigned, Condition);
+    Semaphore(unsigned, unsigned);
 
     void give();
 
