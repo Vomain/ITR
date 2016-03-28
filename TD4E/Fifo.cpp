@@ -1,35 +1,48 @@
 #include "Fifo.h"
 
-Fifo::Fifo(std::queue<int> elements, class EmptyException) : elements(elements) {
-    condition.Condition();  // Chelou, "condition();" devrait suffire
-}
+//template <typename T>
+//Fifo::Fifo() {
+////    elements;
+////    condition;
+//}
 
-void Fifo::push(int element) {
+template <typename T>
+void Fifo<T>::push(T element) {
     elements.push(element);
 }
 
-int Fifo::pop() {
-    elements.pop();
-}
+template <typename T>
+T Fifo<T>::pop() {
 
-int Fifo::pop(double timeout_ms) {
-    Timespec t1; // On instancie notre classe Timespec
-    clock_gettime(CLOCK_REALTIME, &t1); // Obtention du temps présent absolu
+    Lock lock(condition);
+    if (elements.empty()) {
 
-    Timespec t2;
-    t2.from_ms(timeout_ms);
-
-    Timespec t3;
-    t3 = t1 + t2;
-
-    if (!elements.empty()) {
-        elements.pop();
-    } else {
         throw EmptyException();
     }
+    elements.pop();
+
+    return elements.front();
 }
 
+template <typename T>
+T Fifo<T>::pop(double timeout_ms) {
 
+    try {
+        {
+            Lock lock(condition, timeout_ms);
+        }
+    }
+    catch (Lock::TimeoutException const &e) {
+        printf("%s", e.what());
+    }
 
+    if (elements.empty()) {
 
+        throw EmptyException();
+    }
+    elements.pop();
 
+    return elements.front();
+}
+
+template class Fifo<int>;
