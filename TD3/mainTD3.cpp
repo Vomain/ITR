@@ -1,7 +1,6 @@
 #include "Chrono.h"
 #include "Sleeper.h"
 #include <stdio.h>
-#include <windows.h>
 int main(int argc, char *argv[]){
     Chrono chrono1 = Chrono();
     Sleeper sleeper(30);
