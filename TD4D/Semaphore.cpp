@@ -13,7 +13,7 @@ Semaphore::Semaphore(unsigned counter = 0, unsigned maxCount = UINT_MAX) : count
 */
 
 void Semaphore::give() {
-    Lock(&(this->condition)); //Protège la variable counter
+    Lock lock(&condition); //Protège la variable counter
     if (counter < maxCount) {
         counter++;
         printf("giving back token : %d\n", counter);
@@ -37,8 +37,7 @@ void Semaphore::flush() {
 
 void Semaphore::take() {
     printf("trying to take token ...\n");
-    Condition *cond = &condition;
-    Lock(cond);
+    Lock lock(&condition);
     if (counter == 0) {
         printf("no token available\n");
         while (counter == 0) {
@@ -67,7 +66,7 @@ bool Semaphore::take(double timeout_ms) {
     // tmax devient le temps maximal à ne pas dépasser
     tmax = tmax + t_timeout;
 
-    Lock(&(this->condition));
+    Lock lock(&condition);
     if (counter == 0) {
         while (counter == 0) {
             Timespec tmaxWait;
