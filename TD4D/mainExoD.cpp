@@ -22,33 +22,31 @@ void printTime(timespec *t2, timespec *t1)
     printf("Le temps total d'exécution est de : %.0f,%.0fs\n\n", secDiff, nsecDiff);
 }
 
-int semaphoreCount(unsigned nThread, unsigned nTokens, unsigned count)
+int semaphoreCount(unsigned nTokens, unsigned count)
 {
     int schedPolicy = SCHED_RR;
     double counter = 0.0;
 
     Semaphore semaphore(nTokens, nTokens);
-    SemaphoreCounterThread table[nThread];
-    
-    for(int i = 0; i < nThread;i++)
-    {
-        SemaphoreCounterThread thread(schedPolicy, count, &counter, &semaphore);
-        table[i] = thread;
-    }
+    SemaphoreCounterThread threadA(schedPolicy, count, &counter, &semaphore);
+    SemaphoreCounterThread threadB(schedPolicy, count, &counter, &semaphore);
+    SemaphoreCounterThread threadC(schedPolicy, count, &counter, &semaphore);
+    SemaphoreCounterThread threadD(schedPolicy, count, &counter, &semaphore);
     
     struct timespec t1;
 	struct timespec t2;
     clock_gettime(CLOCK_REALTIME, &t1);
     
-    for(int i = 0; i < nThread;i++)
-    {
-        table[i].start(8);
-    }
+    threadA.start(8);
+    threadB.start(8);
+    threadC.start(8);
+    threadD.start(8);
     
-    for(int i = 0; i < nThread;i++)
-    {
-        table[i].join();
-    }
+    threadA.join(8);
+    threadB.join(8);
+    threadC.join(8);
+    threadD.join(8);
+
     
     clock_gettime(CLOCK_REALTIME, &t2);   
     
@@ -60,8 +58,9 @@ int semaphoreCount(unsigned nThread, unsigned nTokens, unsigned count)
 }
 
 int main(int argc, char *argv[]) {
-    semaphoreCount(3,1,1000);
-    semaphoreCount(3,2,1000);
-    semaphoreCount(3,3,1000);
+    semaphoreCount(1,1000);
+    semaphoreCount(2,1000);
+    semaphoreCount(3,1000);
+    semaphoreCount(4,1000);
     
 }
