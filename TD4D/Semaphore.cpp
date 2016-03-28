@@ -3,7 +3,7 @@
 
 unsigned UINT_MAX = 1000;
 
-Semaphore::Semaphore(unsigned counter = 0, unsigned maxCount = UINT_MAX) : counter(counter), maxCount(maxCount), condition(new Condition())
+Semaphore::Semaphore(unsigned counter = 0, unsigned maxCount = UINT_MAX, Condition condition) : counter(counter), maxCount(maxCount), condition(condition)
 {}
 
 
