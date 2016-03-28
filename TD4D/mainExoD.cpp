@@ -28,7 +28,7 @@ int semaphoreCount(unsigned nThread, unsigned nTokens, unsigned count)
     double counter = 0.0;
 
     Semaphore semaphore(nTokens, nTokens);
-    SemaphoreCounterThread *table[nThread];
+    SemaphoreCounterThread table[nThread];
     
     for(int i = 0; i < nThread;i++)
     {
