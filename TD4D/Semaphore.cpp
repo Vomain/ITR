@@ -13,7 +13,7 @@ Semaphore::Semaphore(unsigned counter = 0, unsigned maxCount = UINT_MAX, Conditi
 */
 
 void Semaphore::give() {
-    Lock(&(this->condition); //Protège la variable counter
+    Lock(&(this->condition)); //Protège la variable counter
     if (counter < maxCount) {
         counter++;
         this->condition.notify();
@@ -35,7 +35,7 @@ void Semaphore::flush() {
 */
 
 void Semaphore::take() {
-    Lock(&condition);
+    Lock(&(this->condition));
     if (counter == 0) {
         while (counter == 0) {
             condition.wait();
@@ -60,7 +60,7 @@ bool Semaphore::take(double timeout_ms) {
     // tmax devient le temps maximal à ne pas dépasser
     tmax = tmax + t_timeout;
 
-    Lock(&condition);
+    Lock(&(this->condition));
     if (counter == 0) {
         while (counter == 0) {
             Timespec tmaxWait;
