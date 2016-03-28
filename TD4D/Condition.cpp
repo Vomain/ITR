@@ -15,6 +15,11 @@ void Condition::wait() {
     printf("wait called on condition\n");
     int error = pthread_cond_wait(&cid, &mid);
     printf("finished waiting, result : %d\n", error);
+    if(error != 0)
+    {
+        printf("error : %d", error);
+        std::cerr << "Le mutex n'est pas détenu par le thread courrant !";  
+    }
 }
 
 bool Condition::wait(double timeout_ms) {
