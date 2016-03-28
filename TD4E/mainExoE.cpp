@@ -21,7 +21,8 @@ int main(int argc, char *argv[]) {
     consumer2.start(8);
     consumer3.start(8);
     
-    producer.join(8);
+    producer1.join(8);
+    producer2.join(8);
     consumer1.join(8);
     consumer2.join(8);
     consumer3.join(8);
