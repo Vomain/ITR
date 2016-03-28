@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
     ThreadA threadA(&semaphore);
     ThreadB threadB(&semaphore);
     ThreadC threadC(&semaphore);
-    Waiter wiater(&semaphore);
+    Waiter waiter(&semaphore);
     
     Timespec t1, t2;
     clock_gettime(CLOCK_REALTIME, &t1);
