@@ -1,10 +1,12 @@
+/** @file */
+
 #include "Condition.h"
 #include <stdio.h>
 #include "Timespec.h"
-#include <stdexcept> 
+#include <stdexcept>
 
 
-Condition::Condition() : Mutex(false) {
+Condition::Condition() : Mutex(true) {
     pthread_cond_init(&cid, NULL);
 }
 
