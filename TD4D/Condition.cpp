@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include "Timespec.h"
 
-Condition::Condition() : Mutex(true) { }
+Condition::Condition() : Mutex(true) {
+    pthread_cond_init(&cid, NULL);
+}
 
 Condition::Condition(bool isInversionSafe)
         : Mutex(isInversionSafe) {
