@@ -1,20 +1,18 @@
 #ifndef ITR_PRODUCER_H
 #define ITR_PRODUCER_H
 
-#include "CounterThread.h"
-#include "Lock.h"
+#include "Thread.h"
+#include "Fifo.h"
+#include "Condition.h"
 
 class Producer : public CounterThread {
 public:
-    Producer(int schedPolicy, int nLoops, double *pCounter, Mutex *mutex);
+    Producer(int schedPolicy, int nLoops, Fifo<int> *fifo);
 
     void run();
 
 private:
-
-    Mutex *mutex;
+    Fifo<int> *fifo;
 };
-
-
 
 #endif //ITR_PRODUCER_H
