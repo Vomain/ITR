@@ -8,7 +8,7 @@ void SemaphoreCounterThread::run() {
     for (int i = 0; i < nLoops; i++) {
         semaphore->take();
         *pCounter += 1.0;
-        sleep(1000);
+        sleep(100);
         semaphore->give();
     }
 }
