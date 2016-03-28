@@ -1,4 +1,5 @@
 #include "Semaphore.h"
+#include "Lock.h"
 
 unsigned UINT_MAX = 1000;
 
