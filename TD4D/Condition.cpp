@@ -1,6 +1,8 @@
 #include "Condition.h"
 #include <stdio.h>
 #include "Timespec.h"
+#include <stdexcept> 
+
 
 Condition::Condition() : Mutex(true) {
     pthread_cond_init(&cid, NULL);
@@ -18,7 +20,7 @@ void Condition::wait() {
     if(error != 0)
     {
         printf("error : %d", error);
-        std::cerr << "Le mutex n'est pas détenu par le thread courrant !";  
+        throw std::logic_error( "Le mutex n'est pas détenu par le thread courrant" );
     }
 }
 
