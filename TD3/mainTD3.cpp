@@ -8,12 +8,14 @@ int main(int argc, char *argv[]){
     sleeper.start(7);
     sleeper.join();
     printf(chrono1.isActive() ? "true" : "false");
+    printf("\n");
     printf("lolfd %f\n", chrono1.lap());
     sleeper.start(7);
     sleeper.join();
 
     chrono1.stop();
     printf(chrono1.isActive() ? "true" : "false");
+    printf("\n");
     Timespec temps;
     printf("lolfd %f\n", chrono1.lap());
 
