@@ -6,13 +6,14 @@
 
 class SemaphoreCounterThread : public CounterThread {
 public:
-    SemaphoreCounterThread(int schedPolicy, int nLoops, double *pCounter, Semaphore *semaphore);
+    SemaphoreCounterThread(int schedPolicy, int nLoops, double *pCounter, Semaphore *semaphore, double timeout);
 
 protected:
     void run();
 
 private:
     Semaphore *semaphore;
+    double timeout;
 };
 
 #endif
