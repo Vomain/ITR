@@ -23,11 +23,11 @@ int main(int argc, char *argv[]) {
     consumer2.start(8);
     consumer3.start(8);
     printf("Join !");
-    producer1.join(8, 1000.0);
-    producer2.join(8, 1000.0);
-    consumer1.join(8, 1000.0);
-    consumer2.join(8, 1000.0);
-    consumer3.join(8, 1000.0);
+    producer1.join(1000.0);
+    producer2.join(1000.0);
+    consumer1.join(1000.0);
+    consumer2.join(1000.0);
+    consumer3.join(1000.0);
     
     printf("Terminé !");
     printf("Compteurs : \n   1 : %d, \n   2 : %d, \n   3 : %d\n", consumer1.compteur, consumer2.compteur, consumer3.compteur);
