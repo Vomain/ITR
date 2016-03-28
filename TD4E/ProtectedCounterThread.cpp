@@ -13,7 +13,7 @@ void ProtectedCounterThread::run() {
             }
         }
         catch (Lock::TimeoutException const &e) {
-            printf(e.what());
+            printf("%s", e.what());
         }
     }
 }
