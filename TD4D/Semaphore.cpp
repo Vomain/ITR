@@ -56,7 +56,7 @@ bool Semaphore::take(double timeout_ms) {
     Timespec t_timeout;
     t_timeout.from_ms(timeout_ms);
 
-    // tmax devient le temps maximal à ne pas dépasser
+    // tmax devient l'échéance à ne pas dépasser
     tmax = tmax + t_timeout;
 
     Lock lock(&condition);
@@ -70,6 +70,7 @@ bool Semaphore::take(double timeout_ms) {
             } else {
                 tmaxWait = tmax - tmaxWait; // délai encore disponible
                 double timeout = tmaxWait.to_ms();
+                printf("wait for max %f", timeout);
                 bool result = condition.wait(timeout);
                 if (!result) { // si c'est un timeout qui a libéré le thread
                     return false;

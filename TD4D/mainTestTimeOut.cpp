@@ -26,12 +26,12 @@ double semaphoreCount(unsigned nTokens, unsigned count)
 
     clock_gettime(CLOCK_REALTIME, &t2);   
     t2 = t2 - t1;
-    printf("compteur : %f", counter);
+    printf("compteur : %f\n", counter);
     return t2.to_ms();
 }
 
 int main(int argc, char *argv[]) {
-    semaphoreCount(1, 100);
-    semaphoreCount(2, 100);
-    semaphoreCount(3, 100);
+    semaphoreCount(1, 10);
+    semaphoreCount(2, 10);
+    semaphoreCount(3, 10);
 }
