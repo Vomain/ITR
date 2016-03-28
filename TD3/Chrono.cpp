@@ -44,10 +44,10 @@ bool Chrono::isActive(){
 
 }
 
-double startTime(){
+double Chrono::startTime(){
     return startTime_.to_ms();
 }
-double stoptTime(){
+double Chrono::stoptTime(){
     return stopTime_.to_ms();
 }
 
