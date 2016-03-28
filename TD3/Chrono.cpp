@@ -26,7 +26,7 @@ double Chrono::lap(){
 }
 
 bool Chrono::isActive(){
-    if (&startTime_ < &stopTime_){
+    if (startTime_ < stopTime_){
         printf("loul\n");
         return true;
     }
