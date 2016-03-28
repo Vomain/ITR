@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
     clock_gettime(CLOCK_REALTIME, &t1);
     
     threadC.start(7);
-    timer.sleep(30);
+    sleep(30);
     threadA.start(9);
     threadB.start(8);
     
