@@ -24,17 +24,13 @@ void printTime(timespec *t2, timespec *t1)
 
 int main(int argc, char *argv[]) {
     
-    unsigned int nCount, nToken;
-    sscanf(argv[1], "%d", &nCount);  // On prend le 1er argument donné en paramètre et on le convertit en int
-    sscanf(argv[2], "%d", &nToken);  // On prend le 2eme argument donné en paramètre et on le convertit en int
-    
     int schedPolicy = SCHED_RR;
     double counter = 0.0;
 
-    Semaphore semaphore(nToken,nToken);
-    SemaphoreCounterThread threadA(schedPolicy, nCount, &counter, &semaphore);
-    SemaphoreCounterThread threadB(schedPolicy, nCount, &counter, &semaphore);
-    SemaphoreCounterThread threadC(schedPolicy, nCount, &counter, &semaphore);
+    Semaphore semaphore(1,1);
+    SemaphoreCounterThread threadA(schedPolicy, 1000, &counter, &semaphore);
+    SemaphoreCounterThread threadB(schedPolicy, 1000, &counter, &semaphore);
+    SemaphoreCounterThread threadC(schedPolicy, 1000, &counter, &semaphore);
     
     printf("semaphore using counterThreads created!\n");
     
