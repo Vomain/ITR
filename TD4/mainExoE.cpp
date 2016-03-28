@@ -3,7 +3,7 @@
 #include "Producer.h"
 
 int main(int argc, char *argv[]) {
-
+    printf("\nEXERCICE 5\n");
 
     int schedPolicy = SCHED_RR;
 
