@@ -3,7 +3,7 @@
 #include <stdio.h>
 int main(int argc, char *argv[]){
     Chrono chrono1 = Chrono();
-    Sleeper sleeper(30);
+    Sleeper sleeper(3000);
 
     sleeper.start(7);
     sleeper.join();

@@ -1,8 +1,8 @@
 #include "Sleeper.h"
 
-Sleeper::Sleeper(int seconds_to_wait): Thread(SCHED_RR), seconds_to_wait(seconds_to_wait)
+Sleeper::Sleeper(int ms_to_wait): Thread(SCHED_RR), ms_to_wait(ms_to_wait)
 {}
 
 void Sleeper::run() {
-    sleep(seconds_to_wait);
+    sleep(ms_to_wait);
 }

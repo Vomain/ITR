@@ -5,13 +5,13 @@
 
 class Sleeper : public Thread {
 public:
-    Sleeper(int seconds_to_wait);
+    Sleeper(int ms_to_wait);
 
 protected:
     void run();
 
 private:
-    int seconds_to_wait;
+    int ms_to_wait;
 };
 
 #endif
