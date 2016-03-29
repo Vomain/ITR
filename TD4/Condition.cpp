@@ -1,14 +1,9 @@
-/** @file */
-
 #include "Condition.h"
 #include <stdio.h>
 #include "Timespec.h"
-#include <stdexcept>
+#include "errno.h"
 
-
-Condition::Condition() : Mutex(false) {
-    pthread_cond_init(&cid, NULL);
-}
+Condition::Condition() : Mutex(true) { }
 
 Condition::Condition(bool isInversionSafe)
         : Mutex(isInversionSafe) {
@@ -17,7 +12,6 @@ Condition::Condition(bool isInversionSafe)
 
 void Condition::wait() {
     int error = pthread_cond_wait(&cid, &mid);
-    
 }
 
 bool Condition::wait(double timeout_ms) {
@@ -28,7 +22,8 @@ bool Condition::wait(double timeout_ms) {
     t2.from_ms(timeout_ms);
 
     t1 = t1 + t2;
-    pthread_cond_timedwait(&cid, &mid, &t1);
+    int error = pthread_cond_timedwait(&cid, &mid, &t1);
+    return error != ETIMEDOUT;
 }
 
 void Condition::notify() {

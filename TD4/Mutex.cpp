@@ -1,12 +1,6 @@
-/** @file */
-
 #include "Mutex.h"
-#include <stdexcept>
 
 Mutex::Mutex(bool isInversionSafe) {
-    /**
-     * Appelle toutes les méthodes nécessaires à l'implémentation d'un mutex.
-     */
     pthread_mutexattr_t mutexAttr;
     pthread_mutexattr_init(&mutexAttr);
     pthread_mutexattr_settype(&mutexAttr, PTHREAD_MUTEX_RECURSIVE);
@@ -15,21 +9,10 @@ Mutex::Mutex(bool isInversionSafe) {
 }
 
 void Mutex::lock() {
-    /**
-     * Verrouille le mutex.
-     */
-    int error = pthread_mutex_lock(&mid);
-    if(error != 0)
-    {
-        throw std::logic_error( "Le mutex ne peut pas être locked");
-    }
+    pthread_mutex_lock(&mid);
 }
 
 bool Mutex::lock(double timeout_ms) {
-    /**
-     * Version avec timeout.
-     */
-
     Timespec t1; // On instancie notre classe Timespec
     clock_gettime(CLOCK_REALTIME, &t1); // Obtention du temps présent absolu
 
@@ -43,17 +26,10 @@ bool Mutex::lock(double timeout_ms) {
 }
 
 bool Mutex::trylock() {
-    /**
-     * Equivalent à Lock(), sauf en cas de mutex verrouillé.
-     * Dans ce cas là, la méthode retourne immédiatement.
-     */
     return pthread_mutex_trylock(&mid) == 0;
 }
 
 void Mutex::unlock() {
-    /**
-     * Déverrouille le mutex.
-     */
     pthread_mutex_unlock(&mid);
 }
 	
