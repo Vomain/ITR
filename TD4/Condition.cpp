@@ -33,7 +33,6 @@ bool Condition::wait(double timeout_ms) {
 
     t1 = t1 + t2;
     int error = pthread_cond_timedwait(&cid, &mid, &t1);
-    return error != ETIMEDOUT;
 }
 
 void Condition::notify() {
