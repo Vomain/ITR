@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include "Timespec.h"
 #include <stdexcept>
-#include "errno.h"
 
 
 Condition::Condition() : Mutex(false) {
@@ -18,10 +17,7 @@ Condition::Condition(bool isInversionSafe)
 
 void Condition::wait() {
     int error = pthread_cond_wait(&cid, &mid);
-    if(error == 1)
-    {
-        throw std::logic_error( "Le mutex de la condition n'est pas détenu par le thread courrant" );
-    }
+    
 }
 
 bool Condition::wait(double timeout_ms) {
@@ -32,7 +28,7 @@ bool Condition::wait(double timeout_ms) {
     t2.from_ms(timeout_ms);
 
     t1 = t1 + t2;
-    int error = pthread_cond_timedwait(&cid, &mid, &t1);
+    pthread_cond_timedwait(&cid, &mid, &t1);
 }
 
 void Condition::notify() {
