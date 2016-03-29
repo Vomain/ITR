@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "Timespec.h"
 #include <stdexcept>
-
+#include "errno.h"
 
 Condition::Condition() : Mutex(false) {
     pthread_cond_init(&cid, NULL);
