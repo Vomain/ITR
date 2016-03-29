@@ -1,8 +1,13 @@
+/** @file */
+
 #include "SemaphoreCounterThread.h"
 #include "Semaphore.h"
 #include <stdio.h>
 
-SemaphoreCounterThread::SemaphoreCounterThread(int schedPolicy, int nLoops, double *pCounter, Semaphore *semaphore, double timeout=0) : CounterThread(schedPolicy, nLoops, pCounter), semaphore(semaphore), timeout(timeout) 
+SemaphoreCounterThread::SemaphoreCounterThread(int schedPolicy, int nLoops, double *pCounter, Semaphore *semaphore, double timeout) : CounterThread(schedPolicy, nLoops, pCounter), semaphore(semaphore), timeout(timeout) 
+{}
+
+SemaphoreCounterThread::SemaphoreCounterThread(int schedPolicy, int nLoops, double *pCounter, Semaphore *semaphore) : CounterThread(schedPolicy, nLoops, pCounter), semaphore(semaphore), timeout(0) 
 {}
 
 void SemaphoreCounterThread::run() {
